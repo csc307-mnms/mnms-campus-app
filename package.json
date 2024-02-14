@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "lint": "npx eslint ."
+    "lint": "npx eslint .",
+    "release": "npm run format && npm run lint"
   },
   "repository": {
     "type": "git",
