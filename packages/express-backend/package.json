@@ -1,0 +1,23 @@
+{
+  "name": "express-backend",
+  "version": "1.0.0",
+  "description": "Backend handler for the MnMs app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx nodemon src/backend.js",
+    "start": "node src/backend.js",
+    "upload-atlas-uri": "read -p 'Enter Atlas Connection URI: ' ATLAS_CONNECTION_URI && echo 'ATLAS_URI=\"'$ATLAS_CONNECTION_URI'\"' >> .env"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.2.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "type": "module"
+}
