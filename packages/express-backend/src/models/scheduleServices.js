@@ -1,7 +1,6 @@
-import utils from "../utils.js";
 import scheduleModel from "./schedule.js";
 
-utils.connectToDatabase();
+// utils.connectToDatabase();
 
 function addSchedule(schedule) {
   return scheduleModel.create(schedule);

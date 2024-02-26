@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const buildingLocationSchema = new mongoose.Schema({
+const buildingSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -21,9 +21,6 @@ const buildingLocationSchema = new mongoose.Schema({
   },
 });
 
-const BuildingLocation = mongoose.model(
-  "BuildingLocation",
-  buildingLocationSchema,
-);
+const Building = mongoose.model("Building", buildingSchema);
 
-export default BuildingLocation;
+export default Building;

@@ -1,7 +1,4 @@
-import utils from "../utils.js";
 import course from "./course.js";
-
-utils.connectToDatabase();
 
 function addCourse(course) {
   return course.create(course);
