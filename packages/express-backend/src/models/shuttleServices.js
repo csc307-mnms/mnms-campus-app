@@ -1,7 +1,6 @@
-import utils from "../utils.js";
-import locations from "./buildingLocations.js";
+import locations from "./shuttle.js";
 
-utils.connectToDatabase();
+// utils.connectToDatabase();
 
 function addLocation(location) {
   return locations.create(location);
@@ -19,8 +18,9 @@ function findLocationById(id) {
   return locations.findById(id);
 }
 
-function findMostRecentLocation() {
-  return locations.findOne().sort({ _id: -1 });
+async function findMostRecentLocation() {
+  const mostRecentLocation = await locations.findOne().sort({ timestamp: -1 });
+  return !mostRecentLocation ? [] : mostRecentLocation;
 }
 
 export default {
