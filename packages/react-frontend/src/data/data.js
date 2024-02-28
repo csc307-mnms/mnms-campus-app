@@ -10,7 +10,7 @@ export const SectionID = {
   Map: "map",
   Shuttle: "shuttle",
   Profile: "profile",
-  HomePage: "homepage",
+  HomePage: "",
   ChangePass: "changepass",
 };
 

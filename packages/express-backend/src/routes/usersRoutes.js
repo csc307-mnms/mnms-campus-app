@@ -1,5 +1,6 @@
 import express from "express";
 import userServices from "../models/usersServices.js";
+import jwt from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -35,14 +36,14 @@ router.get("/username/:username", async (req, res) => {
 
 router.post("/authenticate", async (req, res) => {
   const { username, password } = req.body;
-  const user = await userServices.authenticateUser(username, password);
-  if (user) {
-    res.status(200).send(user);
-  }
-  else {
-    res.status(401).send("Invalid username or password");
-  }
+  userServices.authenticateUser(username, password).then((user) => {
+    if (user) {
+      const token = jwt.sign({ username: user.username }, "secretKey");
+      res.status(200).json({ token });
+    } else {
+      res.status(401).send("Invalid username or password");
+    }
+  });
 });
-
 
 export default router;
