@@ -7,7 +7,7 @@ import TextBox from "../components/TextBox.js";
 
 function ChangePass() {
   return (
-    <>
+    <div className="content-center text-center">
       <LogoutHeader text="Change Password" />
 
       <form>
@@ -40,7 +40,7 @@ function ChangePass() {
       </form>
 
       <NavBar activePage="schedules" />
-    </>
+    </div>
   );
 }
 

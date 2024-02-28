@@ -25,8 +25,7 @@ function HomePage() {
       />
 
       <div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2"
-        style={{ top: "8%" }}
+        className="absolute top-12 left-1/2 transform -translate-x-1/2"
       >
         <p className="font-sans text-green-800 text-center text-5xl">
           Welcome to PolyBuddy
@@ -46,8 +45,7 @@ function HomePage() {
         />
 
         <div
-          style={{ marginLeft: "180px" }}
-          className="text-blue-500 cursor-pointer self-end mt-2 font-bold"
+          className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold"
         >
           <p>Forgot Password?</p>
         </div>
@@ -58,8 +56,7 @@ function HomePage() {
         />
 
         <div
-          style={{ marginLeft: "110px" }}
-          className="text-black cursor-pointer self-end mt-2 font-bold"
+          className="text-black cursor-pointer self-end ml-28 mt-2 font-bold"
         >
           <p>Need an account? Sign up!</p>
         </div>
