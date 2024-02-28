@@ -10,28 +10,29 @@ export const SectionID = {
   Map: "map",
   Shuttle: "shuttle",
   Profile: "profile",
-  Login: "login",
+  HomePage: "homepage",
+  ChangePass: "changepass",
 };
 
 export const NavBarData = [
   {
     label: "Schedules",
-    href: `#${SectionID.Schedules}`,
+    href: `${SectionID.Schedules}`,
     icon: faCalendar,
   },
   {
     label: "Map",
-    href: `#${SectionID.Map}`,
+    href: `${SectionID.Map}`,
     icon: faMagnifyingGlass,
   },
   {
     label: "Shuttle",
-    href: `#${SectionID.Shuttle}`,
+    href: `${SectionID.Shuttle}`,
     icon: faBus,
   },
   {
     label: "Profile",
-    href: `#${SectionID.Profile}`,
+    href: `${SectionID.Profile}`,
     icon: faUser,
   },
 ];
