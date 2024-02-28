@@ -24,9 +24,7 @@ function HomePage() {
         className="w-64 h-auto absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/4"
       />
 
-      <div
-        className="absolute top-12 left-1/2 transform -translate-x-1/2"
-      >
+      <div className="absolute top-12 left-1/2 transform -translate-x-1/2">
         <p className="font-sans text-green-800 text-center text-5xl">
           Welcome to PolyBuddy
         </p>
@@ -44,9 +42,7 @@ function HomePage() {
           className="mx-auto w-80 mt-5 mb-1"
         />
 
-        <div
-          className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold"
-        >
+        <div className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold">
           <p>Forgot Password?</p>
         </div>
 
@@ -55,9 +51,7 @@ function HomePage() {
           className="bg-[#003831] text-white font-bold py-2 px-24 shadow-xl rounded mt-3 w-80"
         />
 
-        <div
-          className="text-black cursor-pointer self-end ml-28 mt-2 font-bold"
-        >
+        <div className="text-black cursor-pointer self-end ml-28 mt-2 font-bold">
           <p>Need an account? Sign up!</p>
         </div>
       </div>
