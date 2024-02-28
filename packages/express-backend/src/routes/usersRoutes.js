@@ -27,4 +27,22 @@ router.get("/:id", async (req, res) => {
   res.send(user);
 });
 
+router.get("/username/:username", async (req, res) => {
+  const username = req.params.username;
+  const user = await userServices.findUserByUsername(username);
+  res.send(user);
+});
+
+router.post("/authenticate", async (req, res) => {
+  const { username, password } = req.body;
+  const user = await userServices.authenticateUser(username, password);
+  if (user) {
+    res.status(200).send(user);
+  }
+  else {
+    res.status(401).send("Invalid username or password");
+  }
+});
+
+
 export default router;

@@ -19,9 +19,19 @@ function findUserById(id) {
   return userModel.findById(id);
 }
 
+function findUserByUsername(username) {
+  return userModel.findOne({ username: username });
+}
+
+function authenticateUser(username, password) {
+  return userModel.findOne({ username: username, password: password });
+}
+
 export default {
   addUser,
   getUsers,
   deleteUser,
   findUserById,
+  findUserByUsername,
+  authenticateUser,
 };
