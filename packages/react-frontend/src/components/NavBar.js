@@ -12,10 +12,7 @@ const NavBar = memo(({ activePage }) => {
           href={href}
           key={label}
         >
-          <FontAwesomeIcon
-            icon={icon}
-            className="h-14 w-14 text-white px-5"
-          />
+          <FontAwesomeIcon icon={icon} className="h-14 w-14 text-white px-5" />
         </a>
       ))}
     </div>
