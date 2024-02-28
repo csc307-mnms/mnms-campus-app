@@ -1,6 +1,6 @@
 //App.js
-import ChangePass from "./sections/ChangePass.js";
-import HomePage from "./sections/HomePage.js";
+// import ChangePass from "./sections/ChangePass.js";
+import HomePage from "./sections/homepage.js";
 import "./App.css";
 
 function App() {
