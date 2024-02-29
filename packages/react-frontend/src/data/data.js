@@ -7,6 +7,7 @@ import {
 
 export const SectionID = {
   Schedules: "schedules",
+  NewSchedule: "newschedule",
   Map: "map",
   Shuttle: "shuttle",
   Profile: "profile",

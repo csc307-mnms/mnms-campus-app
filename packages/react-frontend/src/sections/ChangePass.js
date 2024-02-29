@@ -14,7 +14,7 @@ function ChangePass() {
         {/* Current Password box */}
         <TextBox
           text="Current Password"
-          type="name"
+          type="password"
           className="mx-auto w-3/4 mt-12 mb-8"
         />
 
