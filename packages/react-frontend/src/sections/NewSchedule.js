@@ -3,6 +3,7 @@ import Button from "../components/Button.js";
 import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import TextBox from "../components/TextBox.js";
+import UploadFile from "../components/UploadFile.js";
 
 function NewSchedule() {
   return (
@@ -14,35 +15,28 @@ function NewSchedule() {
         Please navigate to your Cal Poly portal and download the schedule.ics
         file to your schedule.
       </h2>
+
       <form>
         <TextBox
-          text="Current Password"
-          type="text"
+          text="Schedule Name"
+          type="schedule name"
           className="mx-auto w-3/4 mt-12 mb-8"
         />
 
-        {/* New Password box */}
-        <TextBox
-          text="New Password"
-          type="password"
+        <UploadFile
+          text="Import Schedule File"
           className="mx-auto w-3/4 mb-8"
         />
 
-        {/* Confirm Password box */}
-        <TextBox
-          text="Confirm Password"
-          type="password"
-          className="mb-24 mx-auto w-3/4"
-        />
-
-        {/* Change Password Button */}
         <Button
-          text="Change Password"
-          className="bg-[#003831] text-white font-bold py-1 pt-2 pb-2 px-24 shadow-xl rounded mb-64"
+          text="Add Schedule"
+          className="bg-[#003831] text-white font-bold py-1 pt-2 pb-2 px-24 shadow-xl rounded mb-30 mt-10 w-3/4 mx-auto"
         />
       </form>
 
-      <NavBar activePage="schedule" />
+      <div className="fixed bottom-0 left-0 right-0">
+        <NavBar activePage="schedule" />
+      </div>
     </div>
   );
 }
