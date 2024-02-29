@@ -2,6 +2,7 @@ import Login from "./sections/Login.js";
 import CreateAccount from "./sections/CreateAccount.js";
 import ChangePass from "./sections/ChangePass.js";
 import ForgotChangePass from "./sections/ForgotChangePass.js";
+import ForgotPassword from "./sections/forgotPassword.js";
 import Map from "./sections/Map.js";
 import Schedules from "./sections/Schedules.js";
 import { SectionID } from "./data/data.js";
@@ -41,11 +42,21 @@ function App() {
           {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />
 
+          {/* Forgot Password */}
+          <Route
+            path={`/${SectionID.ForgotPassword}`}
+            element={<ForgotPassword />}
+          />
+
           {/* Change Password Sections */}
           <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
           <Route
             path={`/${SectionID.ForgotChangePass}`}
             element={<ForgotChangePass />}
+          />
+          <Route
+            path={`/${SectionID.ForgotPassword}`}
+            element={<ForgotPassword />}
           />
         </Routes>
       </BrowserRouter>

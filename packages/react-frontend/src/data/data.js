@@ -15,6 +15,7 @@ export const SectionID = {
   CreateAccount: "createaccount",
   Login: "login",
   Root: "",
+  ForgotPassword: "forgotpassword",
 };
 
 export const NavBarData = [

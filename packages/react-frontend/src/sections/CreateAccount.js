@@ -65,10 +65,7 @@ function CreateAccount() {
 
       {/* Instruction Paragraph */}
       <div className="absolute top-[280px] left-1/2 transform -translate-x-1/2 w-4/5">
-        <p
-          style={{ color: "#000000" }}
-          className="font-sans text-center text-1xl font-bold mb-5"
-        >
+        <p className="font-sans text-center text-1xl font-bold mb-5">
           Please fill out the following information to create a PolyBuddy
           account.
         </p>
@@ -115,7 +112,7 @@ function CreateAccount() {
           {/* Create Account Button */}
           <Button
             text="Sign Up"
-            className="bg-[#003831] text-white font-bold py-2 px-24 shadow-xl rounded mt-8 w-80"
+            className="bg-[#003831] text-white font-bold py-2.5 px-24 shadow-xl rounded mt-8 w-80"
           />
         </form>
       </div>
