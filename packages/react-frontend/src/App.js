@@ -1,8 +1,9 @@
 import Login from "./sections/Login.js";
 import CreateAccount from "./sections/CreateAccount.js";
 import ChangePass from "./sections/ChangePass.js";
-import Schedules from "./sections/Schedules.js";
 import ForgotChangePass from "./sections/ForgotChangePass.js";
+import Map from "./sections/Map.js";
+import Schedules from "./sections/Schedules.js";
 import { SectionID } from "./data/data.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useToken from "./hooks/useToken.js";
