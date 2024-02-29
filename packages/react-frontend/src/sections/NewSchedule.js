@@ -3,7 +3,7 @@ import Button from "../components/Button.js";
 import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import TextBox from "../components/TextBox.js";
-import UploadFile from "../components/UploadFile.js";
+import FileUpload from "../components/FileUpload.js";
 
 function NewSchedule() {
   return (
@@ -23,7 +23,7 @@ function NewSchedule() {
           className="mx-auto w-3/4 mt-12 mb-8"
         />
 
-        <UploadFile
+        <FileUpload
           text="Import Schedule File"
           className="mx-auto w-3/4 mb-8"
         />

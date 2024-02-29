@@ -1,6 +1,6 @@
 import React from "react";
 
-const UploadFile = ({ text, className, onChange }) => {
+const FileUpload = ({ text, className, onChange }) => {
   return (
     <div className={className}>
       <label htmlFor="name" className="block font-bold text-left">
@@ -10,4 +10,4 @@ const UploadFile = ({ text, className, onChange }) => {
     </div>
   );
 };
-export default UploadFile;
+export default FileUpload;

@@ -40,7 +40,7 @@ function App() {
           {/* Schedules Section */}
           <Route path={`/${SectionID.Schedules}`} element={<Schedules />} />
 
-          {/* New Schedules Section */}
+          {/* New Schedule Section */}
           <Route path={`/${SectionID.NewSchedule}`} element={<NewSchedule />} />
 
           {/* Map Section */}
