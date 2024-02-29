@@ -2,17 +2,20 @@ import HomePage from "./sections/homepage.js";
 import CreateAccount from "./sections/createAccount.js";
 import Schedules from "./sections/schedules.js";
 import ChangePass from "./sections/ChangePass.js";
+import Map from "./sections/Map.js";
 import HomeChangePass from "./sections/homeChangePass.js";
 import { SectionID } from "./data/data.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useToken from "./hooks/useToken.js";
 
 function App() {
-  // const { token, setToken } = useToken();
+  const { token, setToken } = useToken();
 
-  // if (!token) {
-  //   return <HomePage setToken={setToken} />;
-  // }
+  const { token, setToken } = useToken();
+
+  if (!token) {
+    return <HomePage setToken={setToken} />;
+  }
 
   return (
     <div className="wrapper">
@@ -24,6 +27,7 @@ function App() {
             element={<CreateAccount />}
           />
           <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
+          <Route path={`/${SectionID.Map}`} element={<Map />} />
           <Route
             path={`/${SectionID.ChangePass}`}
             element={<HomeChangePass />}
