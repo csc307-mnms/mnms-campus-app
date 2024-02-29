@@ -55,7 +55,10 @@ function HomePage({ setToken }) {
       />
 
       <div className="absolute top-12 left-1/2 transform -translate-x-1/2">
-        <p className="font-sans text-green-800 text-center text-5xl">
+        <p
+          style={{ color: "#154734" }}
+          className="font-sans font-bold text-center text-5xl"
+        >
           Welcome to PolyBuddy
         </p>
       </div>
