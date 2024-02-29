@@ -16,16 +16,6 @@ const courseSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  section: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  instructor: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   location: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -43,15 +33,7 @@ const courseSchema = new mongoose.Schema({
     type: [String],
     required: true,
     trim: true,
-  },
-  quarter: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  year: {
-    type: Number,
-    required: true,
+    enum: ["MO", "TU", "WE", "TH", "FR", "SA", "SU"],
   },
 });
 

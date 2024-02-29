@@ -1,7 +1,8 @@
 import course from "./course.js";
 
-function addCourse(course) {
-  return course.create(course);
+function addCourse(body) {
+  console.log(body);
+  return course.create(body);
 }
 
 function getCourses() {
