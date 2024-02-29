@@ -27,8 +27,10 @@ function CreateAccount() {
       .then((res) => {
         if (res.ok) {
           return res.json();
+        } else if (res.status === 409) {
+          throw new Error("User already exists");
         } else {
-          throw new Error("Invalid username or password");
+          throw new Error("Error creating user");
         }
       })
       .catch((error) => {
