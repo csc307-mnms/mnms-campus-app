@@ -17,7 +17,7 @@ function App() {
         <Routes>
           {/* Login Section */}
           <Route path={"/"} element={<Login setToken={setToken} />} />
-            
+
           {/* Create Account Section */}
           <Route
             path={`/${SectionID.CreateAccount}`}
@@ -34,10 +34,10 @@ function App() {
         <Routes>
           {/* Root */}
           <Route path={"/"} element={<Schedules />} />
-          
+
           {/* Schedules Section */}
-          <Route path = {`/${SectionID.Schedules}`} element={<Schedules />} />
-          
+          <Route path={`/${SectionID.Schedules}`} element={<Schedules />} />
+
           {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />
 

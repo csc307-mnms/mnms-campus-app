@@ -23,15 +23,17 @@ function CreateAccount() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ username, email, password }),
-    }).then((res) => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        throw new Error("Invalid username or password");
-      }
-    }).catch((error) => {
-      setError(error.message);
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw new Error("Invalid username or password");
+        }
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
   };
 
   return (
