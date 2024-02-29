@@ -1,13 +1,14 @@
+//homechangepass.js
 import React from "react";
+import Button from "../components/Button.js";
 import backgroundImage from "../resources/calpolycampus.jpg";
 import BackHeader from "../components/BackHeader";
-import Button from "../components/Button";
-import TextBox from "../components/TextBox";
+import TextBox from "../components/TextBox.js";
 
-function CreateAccount() {
+function HomeChangePass() {
   return (
-    <div className="relative h-screen">
-      <BackHeader text="Create Account" href="/" />
+    <div className="content-center text-center">
+      <BackHeader text="Change Password" />
 
       {/* Background Image */}
       <div
@@ -26,41 +27,23 @@ function CreateAccount() {
           style={{ color: "#154734" }}
           className="font-sans text-center text-5xl font-bold"
         >
-          Create Account
-        </p>
-      </div>
-
-      {/* Instruction Paragraph */}
-      <div className="absolute top-[280px] left-1/2 transform -translate-x-1/2 w-4/5">
-        <p
-          style={{ color: "#000000" }}
-          className="font-sans text-center text-1xl font-bold mb-5"
-        >
-          Please fill out the following information to create a PolyBuddy
-          account.
+          Change Password
         </p>
       </div>
 
       {/* Content Center */}
-      <div className="absolute bottom-[110px] left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-[250px] left-1/2 transform -translate-x-1/2">
         <form>
-          {/* Username box */}
+          {/* Current Password box */}
           <TextBox
-            text="Username"
-            type="text"
+            text="Current Password "
+            type="password"
             className="mx-auto w-3/4 mt-5 mb-3 w-80"
           />
 
-          {/* Cal Poly Email */}
+          {/* New Password box */}
           <TextBox
-            text="Cal Poly Email"
-            type="text"
-            className="mx-auto w-3/4 mb-3 w-80"
-          />
-
-          {/* Password box */}
-          <TextBox
-            text="Password"
+            text="New Password"
             type="password"
             className="mx-auto w-3/4 mb-3 w-80"
           />
@@ -74,8 +57,8 @@ function CreateAccount() {
 
           {/* Create Account Button */}
           <Button
-            text="Sign Up"
-            className="bg-[#003831] text-white font-bold py-2 px-24 shadow-xl rounded mt-8 w-80"
+            text="Change Password"
+            className="bg-[#003831] text-white font-bold py-2 px-24 shadow-xl rounded mt-10 w-80 whitespace-nowrap"
           />
         </form>
       </div>
@@ -83,4 +66,4 @@ function CreateAccount() {
   );
 }
 
-export default CreateAccount;
+export default HomeChangePass;
