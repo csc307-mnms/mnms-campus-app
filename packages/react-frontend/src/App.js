@@ -1,9 +1,10 @@
-import HomePage from "./sections/homepage.js";
-import CreateAccount from "./sections/createAccount.js";
-import Schedules from "./sections/schedules.js";
+import Login from "./sections/Login.js";
+import CreateAccount from "./sections/CreateAccount.js";
 import ChangePass from "./sections/ChangePass.js";
-import HomeChangePass from "./sections/homeChangePass.js";
+import ForgotChangePass from "./sections/ForgotChangePass.js";
 import ForgotPassword from "./sections/forgotPassword.js";
+import Map from "./sections/Map.js";
+import Schedules from "./sections/Schedules.js";
 import { SectionID } from "./data/data.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useToken from "./hooks/useToken.js";
@@ -12,22 +13,46 @@ function App() {
   const { token, setToken } = useToken();
 
   if (!token) {
-    return <HomePage setToken={setToken} />;
+    return (
+      <BrowserRouter>
+        <Routes>
+          {/* Login Section */}
+          <Route path={"/"} element={<Login setToken={setToken} />} />
+
+          {/* Create Account Section */}
+          <Route
+            path={`/${SectionID.CreateAccount}`}
+            element={<CreateAccount />}
+          />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   return (
     <div className="wrapper">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<ForgotPassword />} />
+          {/* Root */}
+          <Route path={"/"} element={<Schedules />} />
+
+          {/* Schedules Section */}
+          <Route path={`/${SectionID.Schedules}`} element={<Schedules />} />
+
+          {/* Map Section */}
+          <Route path={`/${SectionID.Map}`} element={<Map />} />
+
+          {/* Forgot Password */}
           <Route
-            path={`/${SectionID.CreateAccount}`}
-            element={<CreateAccount />}
+            path={`/${SectionID.ForgotPassword}`}
+            element={<ForgotPassword />}
           />
+
+          {/* Change Password Sections */}
           <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
           <Route
-            path={`/${SectionID.ChangePass}`}
-            element={<HomeChangePass />}
+            path={`/${SectionID.ForgotChangePass}`}
+            element={<ForgotChangePass />}
           />
           <Route
             path={`/${SectionID.ForgotPassword}`}

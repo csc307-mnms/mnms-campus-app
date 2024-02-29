@@ -6,8 +6,13 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const user = req.body;
-  const newUser = await userServices.addUser(user);
-  res.send(newUser);
+  userServices.addUser(user).then((user) => {
+    if (user) {
+      res.status(201).send(user);
+    } else {
+      res.status(409).send("User already exists");
+    }
+  });
 });
 
 router.get("/", async (req, res) => {

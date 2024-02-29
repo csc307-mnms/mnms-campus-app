@@ -5,7 +5,20 @@ import bcrypt from "bcrypt";
 utils.connectToDatabase();
 
 function addUser(user) {
-  return userModel.create(user);
+  return new Promise((resolve, reject) => {
+    findUserByUsername(user.username)
+      .then((foundUser) => {
+        if (foundUser) {
+          resolve(null);
+        } else {
+          resolve(userModel.create(user));
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        reject(error);
+      });
+  });
 }
 
 function getUsers() {
