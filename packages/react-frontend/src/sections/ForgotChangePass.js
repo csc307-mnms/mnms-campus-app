@@ -2,10 +2,10 @@
 import React from "react";
 import Button from "../components/Button.js";
 import backgroundImage from "../resources/calpolycampus.jpg";
-import BackHeader from "../components/BackHeader";
+import BackHeader from "../components/BackHeader.js";
 import TextBox from "../components/TextBox.js";
 
-function HomeChangePass() {
+function ForgotChangePass() {
   return (
     <div className="content-center text-center">
       <BackHeader text="Change Password" />
@@ -66,4 +66,4 @@ function HomeChangePass() {
   );
 }
 
-export default HomeChangePass;
+export default ForgotChangePass;

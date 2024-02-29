@@ -10,8 +10,11 @@ export const SectionID = {
   Map: "map",
   Shuttle: "shuttle",
   Profile: "profile",
-  HomePage: "",
+  ForgotChangePass: "forgotchangepass",
   ChangePass: "changepass",
+  CreateAccount: "createaccount",
+  Login: "login",
+  Root: "",
 };
 
 export const NavBarData = [
