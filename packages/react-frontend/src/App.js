@@ -5,6 +5,7 @@ import ForgotChangePass from "./sections/ForgotChangePass.js";
 import ForgotPassword from "./sections/forgotPassword.js";
 import Map from "./sections/Map.js";
 import Schedules from "./sections/Schedules.js";
+import NewSchedule from "./sections/NewSchedule.js";
 import { SectionID } from "./data/data.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useToken from "./hooks/useToken.js";
@@ -38,6 +39,9 @@ function App() {
 
           {/* Schedules Section */}
           <Route path={`/${SectionID.Schedules}`} element={<Schedules />} />
+
+          {/* New Schedule Section */}
+          <Route path={`/${SectionID.NewSchedule}`} element={<NewSchedule />} />
 
           {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />
