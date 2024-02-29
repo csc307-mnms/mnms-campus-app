@@ -6,7 +6,7 @@ import Button from "../components/Button.js";
 import TextBox from "../components/TextBox.js";
 import PropTypes from "prop-types";
 
-function HomePage({ setToken }) {
+function Login({ setToken }) {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
@@ -97,8 +97,8 @@ function HomePage({ setToken }) {
   );
 }
 
-HomePage.propTypes = {
+Login.propTypes = {
   setToken: PropTypes.func.isRequired,
 };
 
-export default HomePage;
+export default Login;
