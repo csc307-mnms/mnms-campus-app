@@ -5,6 +5,7 @@ import CPlogo from "../resources/calpolylogo.png";
 import Button from "../components/Button.js";
 import TextBox from "../components/TextBox.js";
 import PropTypes from "prop-types";
+import { SectionID } from "../data/data.js";
 
 function Login({ setToken }) {
   const [username, setUsername] = useState();
@@ -89,7 +90,13 @@ function Login({ setToken }) {
           />
 
           <div className="text-black cursor-pointer self-end ml-28 mt-2 font-bold">
-            <p>Need an account? Sign up!</p>
+            <a
+              aria-label="create account button"
+              href={`${SectionID.CreateAccount}`}
+              key="create account button"
+            >
+              Need an account? Sign up!
+            </a>
           </div>
         </div>
       </form>

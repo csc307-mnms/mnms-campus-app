@@ -12,20 +12,37 @@ function App() {
   const { token, setToken } = useToken();
 
   if (!token) {
-    return <Login setToken={setToken} />;
+    return (
+      <BrowserRouter>
+        <Routes>
+          {/* Login Section */}
+          <Route path={"/"} element={<Login setToken={setToken} />} />
+            
+          {/* Create Account Section */}
+          <Route
+            path={`/${SectionID.CreateAccount}`}
+            element={<CreateAccount />}
+          />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   return (
     <div className="wrapper">
       <BrowserRouter>
         <Routes>
+          {/* Root */}
           <Route path={"/"} element={<Schedules />} />
-          <Route
-            path={`/${SectionID.CreateAccount}`}
-            element={<CreateAccount />}
-          />
-          <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
+          
+          {/* Schedules Section */}
+          <Route path = {`/${SectionID.Schedules}`} element={<Schedules />} />
+          
+          {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />
+
+          {/* Change Password Sections */}
+          <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
           <Route
             path={`/${SectionID.ForgotChangePass}`}
             element={<ForgotChangePass />}
