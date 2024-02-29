@@ -10,9 +10,11 @@ function NewSchedule() {
       <LogoutHeader text="Schedules" />
 
       <h1 className="font-bold text-5xl mt-12 mb-12">Create New Schedule</h1>
-      <h2 className="font-bold text-2xl ml-3 mr-3 mb-12">Please navigate to your Cal Poly portal and download the schedule.ics file to your schedule.</h2>
+      <h2 className="font-bold text-2xl ml-3 mr-3 mb-12">
+        Please navigate to your Cal Poly portal and download the schedule.ics
+        file to your schedule.
+      </h2>
       <form>
-
         <TextBox
           text="Current Password"
           type="text"
@@ -46,4 +48,3 @@ function NewSchedule() {
 }
 
 export default NewSchedule;
-
