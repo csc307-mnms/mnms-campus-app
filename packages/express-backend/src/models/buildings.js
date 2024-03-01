@@ -11,11 +11,11 @@ const buildingSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  latitude: {
+  lat: {
     type: Number,
     required: true,
   },
-  longitude: {
+  lng: {
     type: Number,
     required: true,
   },
