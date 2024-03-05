@@ -34,16 +34,20 @@ function findUserById(id) {
 }
 
 function findUserByUsername(username) {
-  return userModel.findOne({ username: username });
+  console.log("finding user by username...");
+  const user = userModel.findOne({ username: username });
+  return user;
 }
 
 function authenticateUser(username, password) {
+  console.log("authenticating user...");
   return new Promise((resolve, reject) => {
     findUserByUsername(username)
       .then((user) => {
         if (!user) {
           resolve(null);
         }
+        console.log("user found: ", user, " comparing passwords...");
         bcrypt.compare(password, user.password, (err, res) => {
           if (res) {
             resolve(user);
