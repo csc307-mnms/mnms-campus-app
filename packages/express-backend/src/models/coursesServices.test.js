@@ -5,6 +5,11 @@ import { jest } from "@jest/globals";
 course.findOne = jest.fn();
 
 describe("findCourseByNumberSection", () => {
+  const findOne = course.findOne;
+  afterEach(() => {
+    course.findOne = findOne;
+  });
+
   test("should resolve with course when course number and section match", async () => {
     jest.useFakeTimers();
 
