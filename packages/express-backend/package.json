@@ -4,7 +4,7 @@
   "description": "Backend handler for the MnMs app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "dev": "npx nodemon src/backend.js",
     "start": "node src/backend.js",
     "upload-atlas-uri": "read -p 'Enter Atlas Connection URI: ' ATLAS_CONNECTION_URI && echo 'ATLAS_URI=\"'$ATLAS_CONNECTION_URI'\"' >> .env"
@@ -13,7 +13,9 @@
   "license": "ISC",
   "devDependencies": {
     "bcrypt": "^5.1.1",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.0"
   },
@@ -23,5 +25,8 @@
     "ical": "^0.8.0",
     "multer": "^1.4.5-lts.1"
   },
-  "type": "module"
+  "type": "module",
+  "jest": {
+    "transform": {}
+  }
 }

@@ -1,34 +1,29 @@
 import buildings from "./buildings.js";
 
-function addBuilding(building) {
-  return buildings.create(building);
-}
+const buildingServices = {
+  addBuilding: function (building) {
+    return buildings.create(building);
+  },
 
-function getBuildings() {
-  return buildings.find();
-}
+  getBuildings: function () {
+    return buildings.find();
+  },
 
-function deleteBuilding(id) {
-  return buildings.findByIdAndDelete(id);
-}
+  deleteBuilding: function (id) {
+    return buildings.findByIdAndDelete(id);
+  },
 
-function findBuildingById(id) {
-  return buildings.findById(id);
-}
+  findBuildingById: function (id) {
+    return buildings.findById(id);
+  },
 
-function findBuildingByName(name) {
-  return buildings.findOne({ name: name });
-}
+  findBuildingByName: function (name) {
+    return buildings.findOne({ name: name });
+  },
 
-function findBuildingByNumber(number) {
-  return buildings.findOne({ number: number });
-}
-
-export default {
-  addBuilding,
-  getBuildings,
-  deleteBuilding,
-  findBuildingById,
-  findBuildingByName,
-  findBuildingByNumber,
+  findBuildingByNumber: function (number) {
+    return buildings.findOne({ number: number });
+  },
 };
+
+export default buildingServices;

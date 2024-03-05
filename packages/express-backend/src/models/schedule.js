@@ -1,6 +1,11 @@
 import mongoose from "mongoose";
 
 const scheduleSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
   courses: [
     {
       type: mongoose.Schema.Types.ObjectId,

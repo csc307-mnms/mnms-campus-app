@@ -1,26 +1,21 @@
 import scheduleModel from "./schedule.js";
 
-// utils.connectToDatabase();
+const scheduleServices = {
+  addSchedule(schedule) {
+    return scheduleModel.create(schedule);
+  },
 
-function addSchedule(schedule) {
-  return scheduleModel.create(schedule);
-}
+  getSchedules() {
+    return scheduleModel.find();
+  },
 
-function getSchedules() {
-  return scheduleModel.find();
-}
+  deleteSchedule(id) {
+    return scheduleModel.findByIdAndDelete(id);
+  },
 
-function deleteSchedule(id) {
-  return scheduleModel.findByIdAndDelete(id);
-}
-
-function findScheduleById(id) {
-  return scheduleModel.findById(id);
-}
-
-export default {
-  addSchedule,
-  getSchedules,
-  deleteSchedule,
-  findScheduleById,
+  findScheduleById(id) {
+    return scheduleModel.findById(id);
+  },
 };
+
+export default scheduleServices;
