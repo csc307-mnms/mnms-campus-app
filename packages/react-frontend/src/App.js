@@ -3,6 +3,7 @@ import CreateAccount from "./sections/CreateAccount.js";
 import ChangePass from "./sections/ChangePass.js";
 import ForgotChangePass from "./sections/ForgotChangePass.js";
 import ForgotPassword from "./sections/ForgotPassword.js";
+import ProfilePage from "./sections/ProfilePage.js";
 import Map from "./sections/Map.js";
 import Schedules from "./sections/Schedules.js";
 import NewSchedule from "./sections/NewSchedule.js";
@@ -56,6 +57,10 @@ function App() {
 
           {/* Change Password Sections */}
           <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
+          <Route
+            path={`/${SectionID.ProfilePage}`}
+            element={<ProfilePage token={token}/>}
+          />
         </Routes>
       </BrowserRouter>
     </div>
