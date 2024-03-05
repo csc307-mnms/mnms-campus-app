@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar.js";
 import Calendar from "../components/Calendar.js";
 
 function Schedules() {
-  const [schedules, setSchedules] = useState(null);
+  // const [schedules, setSchedules] = useState(null);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
 
