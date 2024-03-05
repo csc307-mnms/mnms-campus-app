@@ -4,6 +4,7 @@
   "description": "Backend handler for the MnMs app",
   "main": "index.js",
   "scripts": {
+    "lint": "npx eslint . && npx prettier --check .",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "dev": "npx nodemon src/backend.js",
     "start": "node src/backend.js",
