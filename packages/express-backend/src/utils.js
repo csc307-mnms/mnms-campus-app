@@ -4,8 +4,9 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const uri = process.env.ATLAS_URI;
-// const uri = "mongodb+srv://mmontemurno:fB5NxVFMoMaVFKa4@polybuddycluster.caslhkv.mongodb.net/?retryWrites=true&w=majority&appName=PolyBuddyCluster";
+// const uri = process.env.ATLAS_URI;
+const uri =
+  "mongodb+srv://mmontemurno:fB5NxVFMoMaVFKa4@polybuddycluster.caslhkv.mongodb.net/?retryWrites=true&w=majority&appName=PolyBuddyCluster";
 
 function connectToDatabase() {
   mongoose.set("debug", true);
