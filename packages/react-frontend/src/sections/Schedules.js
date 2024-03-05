@@ -5,7 +5,7 @@ import NavBar from "../components/NavBar.js";
 import Calendar from "../components/Calendar.js";
 
 function Schedules() {
-  const [schedules, setSchedules] = useState([null]);
+  const [schedules, setSchedules] = useState(null);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -33,6 +33,7 @@ function Schedules() {
   //setSchedules(options);
 
   const handleChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
     setSelectedSchedule(selectedOption);
   };
 
@@ -50,7 +51,9 @@ function Schedules() {
         />
       </div>
 
-      {selectedSchedule && (<Calendar selectedScheduleId={selectedSchedule.value} /> )}
+      {selectedSchedule && (
+        <Calendar selectedScheduleId={selectedSchedule.value} />
+      )}
 
       <div className="fixed bottom-0 left-0 right-0">
         <NavBar activePage="schedule" />
