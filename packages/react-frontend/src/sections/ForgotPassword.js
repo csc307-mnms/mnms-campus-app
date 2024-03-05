@@ -8,7 +8,7 @@ function ForgotPassword() {
   return (
     <div className="relative h-screen">
       <div>
-       <BackHeader text="Create Account" href="/" />
+        <BackHeader text="Create Account" href="/" />
       </div>
 
       {/* Background Image */}
