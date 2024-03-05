@@ -7,7 +7,9 @@ import TextBox from "../components/TextBox";
 function ForgotPassword() {
   return (
     <div className="relative h-screen">
-      <BackHeader text="Create Account" href="/" />
+      <div>
+       <BackHeader text="Create Account" href="/" />
+      </div>
 
       {/* Background Image */}
       <div
@@ -17,8 +19,9 @@ function ForgotPassword() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.3,
+          pointerEvents: "none",
         }}
-      ></div>
+      />
 
       {/* Create Account Heading */}
       <div className="absolute top-[150px] left-1/2 transform -translate-x-1/2">

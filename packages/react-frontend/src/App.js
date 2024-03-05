@@ -25,6 +25,14 @@ function App() {
             path={`/${SectionID.CreateAccount}`}
             element={<CreateAccount />}
           />
+          <Route
+            path={`/${SectionID.ForgotPassword}`}
+            element={<ForgotPassword />}
+          />
+          <Route
+            path={`/${SectionID.ForgotChangePass}`}
+            element={<ForgotChangePass />}
+          />
         </Routes>
       </BrowserRouter>
     );
@@ -46,22 +54,8 @@ function App() {
           {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />
 
-          {/* Forgot Password */}
-          <Route
-            path={`/${SectionID.ForgotPassword}`}
-            element={<ForgotPassword />}
-          />
-
           {/* Change Password Sections */}
           <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
-          <Route
-            path={`/${SectionID.ForgotChangePass}`}
-            element={<ForgotChangePass />}
-          />
-          <Route
-            path={`/${SectionID.ForgotPassword}`}
-            element={<ForgotPassword />}
-          />
         </Routes>
       </BrowserRouter>
     </div>

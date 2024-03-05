@@ -79,7 +79,10 @@ function Login({ setToken }) {
           />
 
           <div className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold">
-            <p>Forgot Password?</p>
+            <button 
+              aria-label="forgot password button"
+              onClick={() => window.location.href = `${SectionID.ForgotPassword}`}
+              >Forgot Password?</button>
           </div>
 
           {error && <p className="text-red-500 text-center">{error}</p>}

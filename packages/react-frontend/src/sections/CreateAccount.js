@@ -50,6 +50,7 @@ function CreateAccount() {
           backgroundSize: "cover",
           backgroundPosition: "center",
           opacity: 0.3,
+          pointerEvents: "none",
         }}
       ></div>
 

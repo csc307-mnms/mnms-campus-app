@@ -57,8 +57,8 @@ function CampusMap() {
     });
 
     const destinationPosition = new window.google.maps.LatLng({
-      lat: selectedBuilding.position.lat,
-      lng: selectedBuilding.position.lng,
+      lat: selectedBuilding.lat,
+      lng: selectedBuilding.lng,
     });
 
     const directionsService = new window.google.maps.DirectionsService();
