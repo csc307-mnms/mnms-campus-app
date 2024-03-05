@@ -15,6 +15,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "lint": "npx eslint . && npx prettier --check .",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
