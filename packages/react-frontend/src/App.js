@@ -2,7 +2,7 @@ import Login from "./sections/Login.js";
 import CreateAccount from "./sections/CreateAccount.js";
 import ChangePass from "./sections/ChangePass.js";
 import ForgotChangePass from "./sections/ForgotChangePass.js";
-import ForgotPassword from "./sections/forgotPassword.js";
+import ForgotPassword from "./sections/ForgotPassword.js";
 import Map from "./sections/Map.js";
 import Schedules from "./sections/Schedules.js";
 import NewSchedule from "./sections/NewSchedule.js";
