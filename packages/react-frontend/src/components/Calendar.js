@@ -84,7 +84,6 @@ const Calendar = ({ selectedScheduleId }) => {
     <div style={styles.main}>
       <DayPilotCalendar {...config} ref={calendarRef} />
     </div>
-    
   );
 };
 
