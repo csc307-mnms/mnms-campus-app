@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Select from "react-select";
 import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
-import AddSymbol from "../resources/plus-icon.png";
 import Calendar from "../components/Calendar.js";
 
 function Schedules() {
@@ -31,7 +30,7 @@ function Schedules() {
     { value: "W2024", label: "W2024" },
   ];
 
-  setSchedules(options);
+  //setSchedules(options);
 
   const handleChange = (selectedOption) => {
     setSelectedSchedule(selectedOption);
@@ -44,16 +43,14 @@ function Schedules() {
       <div className="mx-auto w-1/2 items-center">
         <Select
           className="w-100 mt-5 mb-5 font-bold text-xl"
-          options={schedules}
+          options={options}
           onChange={handleChange}
           placeholder="Select Schedule"
           menuPlacement="auto"
         />
       </div>
 
-      {selectedSchedule && (
-        <Calendar selectedScheduleId={selectedSchedule.value} />
-      )}
+      {selectedSchedule && (<Calendar selectedScheduleId={selectedSchedule.value} /> )}
 
       <div className="fixed bottom-0 left-0 right-0">
         <NavBar activePage="schedule" />
