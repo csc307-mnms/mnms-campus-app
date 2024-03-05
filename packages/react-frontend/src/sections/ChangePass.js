@@ -39,7 +39,7 @@ function ChangePass() {
         />
       </form>
 
-      <NavBar activePage="schedules" />
+      <NavBar activePage="profile" />
     </div>
   );
 }
