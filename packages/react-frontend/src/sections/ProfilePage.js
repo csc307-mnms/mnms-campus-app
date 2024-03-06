@@ -1,6 +1,7 @@
 import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import React, { useState, useEffect } from "react";
+import { BackendURI } from "../data/data.js";
 
 function ProfilePage({ token }) {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ function ProfilePage({ token }) {
 
   useEffect(() => {
     fetch(
-      "http://localhost:8000/users/username/" +
+      `${BackendURI}/users/username/` +
         JSON.parse(atob(token.split(".")[1])).username,
     )
       .then((res) => res.json())
@@ -31,8 +32,6 @@ function ProfilePage({ token }) {
         </p>
         <p className="text-center">Email</p>
         <p className="bg-[#e5e7eb] px-1 rounded w-50 text-center shadow-lg h-10 mt-2">
-          {/* {fetch("http://localhost:8000/users/username/" + JSON.parse(atob(token.split('.')[1])).username)
-          .then((res)=>res).json().email} */}
           {email}
         </p>
       </div>

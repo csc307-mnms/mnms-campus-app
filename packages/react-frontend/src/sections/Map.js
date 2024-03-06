@@ -7,6 +7,7 @@ import {
 import LogoutHeader from "../components/LogoutHeader";
 import NavBar from "../components/NavBar";
 import Select from "react-select";
+import { BackendURI } from "../data/data";
 
 function CampusMap() {
   const [userLocation, setUserLocation] = useState(null);
@@ -15,7 +16,7 @@ function CampusMap() {
   const [directions, setDirections] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/buildings")
+    fetch(`${BackendURI}/buildings`)
       .then((response) => response.json())
       .then((data) => {
         const options = data.map((building) => ({

@@ -10,7 +10,7 @@ function Schedules() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   // useEffect(() => {
-  //   fetch("http://localhost:8000/schedules/:id")
+  //   fetch(`${BackendURI}/schedules/:id`)
   //   .then((response) => response.json())
   //   .then((data) => {
   //     const options = data.map((schedule) => ({

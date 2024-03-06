@@ -3,6 +3,7 @@ import backgroundImage from "../resources/calpolycampus.jpg";
 import BackHeader from "../components/BackHeader";
 import Button from "../components/Button";
 import TextBox from "../components/TextBox";
+import { BackendURI } from "../data/data";
 
 function CreateAccount() {
   const [username, setUsername] = useState();
@@ -17,7 +18,7 @@ function CreateAccount() {
       setError("Passwords do not match");
       return;
     }
-    fetch("http://localhost:8000/users", {
+    fetch(`${BackendURI}/users`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

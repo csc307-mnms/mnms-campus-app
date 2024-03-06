@@ -5,7 +5,7 @@ import CPlogo from "../resources/calpolylogo.png";
 import Button from "../components/Button.js";
 import TextBox from "../components/TextBox.js";
 import PropTypes from "prop-types";
-import { SectionID } from "../data/data.js";
+import { SectionID, BackendURI } from "../data/data.js";
 
 function Login({ setToken }) {
   const [username, setUsername] = useState();
@@ -14,7 +14,7 @@ function Login({ setToken }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8000/users/authenticate", {
+    fetch(`${BackendURI}/users/authenticate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
