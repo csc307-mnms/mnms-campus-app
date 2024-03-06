@@ -26,7 +26,7 @@ function CreateAccount() {
     })
       .then((res) => {
         if (res.ok) {
-          return res.json();
+          window.location.href = "/";
         } else if (res.status === 409) {
           throw new Error("User already exists");
         } else {
