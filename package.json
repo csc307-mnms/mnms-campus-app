@@ -4,12 +4,12 @@
   "description": "Campus app for CSC 307",
   "main": "index.js",
   "scripts": {
-    "installHooks": "git config core.hooksPath hooks && npm install --save-dev @babel/plugin-proposal-private-property-in-object@^7.21.11",
+    "installHooks": "cross-env-shell git config core.hooksPath hooks && npm install --save-dev @babel/plugin-proposal-private-property-in-object@^7.21.11",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "lint": "npx eslint .",
-    "release": "npm run format && npm run lint",
-    "start": "cd packages/react-frontend && npm start"
+    "format": "cross-env npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "lint": "cross-env npx eslint .",
+    "release": "cross-env npm run format && npm run lint",
+    "start": "cross-env npm run -w react-frontned start"
   },
   "repository": {
     "type": "git",
