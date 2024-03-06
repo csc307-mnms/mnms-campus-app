@@ -8,6 +8,17 @@ import LogoutHeader from "../components/LogoutHeader";
 import NavBar from "../components/NavBar";
 import Select from "react-select";
 import { BackendURI } from "../data/data";
+import dotenv from "dotenv";
+import process from "process";
+
+function getAPIKey() {
+  if (process.env.GOOGLE_MAPS_API_KEY) {
+    return process.env.GOOGLE_MAPS_API_KEY;
+  } else {
+    dotenv.config();
+    return process.env.GOOGLE_MAPS_API_KEY;
+  }
+}
 
 function CampusMap() {
   const [userLocation, setUserLocation] = useState(null);
@@ -89,7 +100,7 @@ function CampusMap() {
         placeholder="Search for a building"
       />
       <button onClick={handleDirections}>Get Directions</button>
-      <LoadScript googleMapsApiKey="AIzaSyDDQYpqY1kkU_HeXVNnkwryQEeKR8fusd0">
+      <LoadScript googleMapsApiKey={getAPIKey()}>
         <GoogleMap
           mapContainerStyle={{ width: "100%", height: "660px" }}
           center={{ lat: 35.30081350938093, lng: -120.66024162824894 }}

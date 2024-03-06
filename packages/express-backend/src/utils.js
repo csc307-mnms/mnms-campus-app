@@ -2,12 +2,18 @@ import mongoose from "mongoose";
 import process from "process";
 import dotenv from "dotenv";
 
-dotenv.config();
-
-const uri = process.env.ATLAS_URI;
+function getAtlasURI() {
+  if (process.env.ATLAS_URI) {
+    return process.env.ATLAS_URI;
+  } else {
+    dotenv.config();
+    return process.env.ATLAS_URI;
+  }
+}
 
 function connectToDatabase() {
   mongoose.set("debug", true);
+  const uri = getAtlasURI();
   if (!uri) {
     console.error("ATLAS_URI not set");
     console.error("Please run `npm run upload-atlas-uri` to set it.");

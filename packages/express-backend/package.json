@@ -4,10 +4,10 @@
   "description": "Backend handler for the MnMs app",
   "main": "index.js",
   "scripts": {
-    "lint": "npx eslint . && npx prettier --check .",
+    "lint": "cross-env npx eslint . && npx prettier --check .",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-    "dev": "npx nodemon src/backend.js",
-    "start": "node src/backend.js",
+    "dev": "cross-env npx nodemon src/backend.js",
+    "start": "cross-env node src/backend.js",
     "upload-atlas-uri": "read -p 'Enter Atlas Connection URI: ' ATLAS_CONNECTION_URI && echo 'ATLAS_URI=\"'$ATLAS_CONNECTION_URI'\"' >> .env"
   },
   "author": "",
