@@ -8,7 +8,7 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "dev": "cross-env npx nodemon src/backend.js",
     "start": "cross-env node src/backend.js",
-    "upload-atlas-uri": "read -p 'Enter Atlas Connection URI: ' ATLAS_CONNECTION_URI && echo 'ATLAS_URI=\"'$ATLAS_CONNECTION_URI'\"' >> .env"
+    "upload-atlas-uri": "cross-env read -p 'Enter Atlas Connection URI: ' ATLAS_CONNECTION_URI && echo 'ATLAS_URI=\"'$ATLAS_CONNECTION_URI'\"' >> .env"
   },
   "author": "",
   "license": "ISC",
