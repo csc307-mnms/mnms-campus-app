@@ -4,8 +4,11 @@ import {
   faBus,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import process from "process";
 
-export const BackendURI = `https://polybuddy-api.azurewebsites.net:${process.env.PORT}`;
+export const BackendURI = process.env.PORT
+  ? `https://polybuddy-api.azurewebsites.net:${process.env.PORT}`
+  : `http://localhost:8000`;
 
 export const SectionID = {
   Schedules: "schedules",
