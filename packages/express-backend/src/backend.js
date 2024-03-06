@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import utils from "./utils.js";
+import process from "process";
 
 import buildingsRoutes from "./routes/buildingsRoutes.js";
 import usersRoutes from "./routes/usersRoutes.js";
