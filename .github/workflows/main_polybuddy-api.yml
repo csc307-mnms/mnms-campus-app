@@ -23,7 +23,6 @@ jobs:
 
       - name: npm install, build, and test
         run: |
-          export NODE_ENV=production
           npm install --workspaces=false
           npm run -w express-backend build --if-present
           npm run -w express-backend test --if-present
