@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddSchedule = memo(({ activePage }) => {
   return (
-
     <div>
       {AddScheduleData.map(({ label, href, icon }) => (
         <button
@@ -13,7 +12,7 @@ const AddSchedule = memo(({ activePage }) => {
           onClick={() => (window.location.href = href)}
           key={label}
         >
-          <FontAwesomeIcon icon={icon} className="h-7 w-7 px-1"/>
+          <FontAwesomeIcon icon={icon} className="h-7 w-7 px-1" />
         </button>
       ))}
     </div>

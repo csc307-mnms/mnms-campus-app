@@ -110,8 +110,8 @@ const Calendar = ({ selectedScheduleId }) => {
       id: 12,
       scheduleId: "W2024",
       text: "PHYS 142",
-      start: "2024-03-06T08:00:00",
-      end: "2024-03-06T11:00:00",
+      start: "2024-03-06T09:00:00",
+      end: "2024-03-06T12:00:00",
       backColor: "#6aa84f",
     },
     {

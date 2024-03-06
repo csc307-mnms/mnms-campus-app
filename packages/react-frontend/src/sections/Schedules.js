@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import Calendar from "../components/Calendar.js";
+import AddSchedule from "../components/AddSchedule.js";
 
 function Schedules() {
-  // const [schedules, setSchedules] = useState(null);
+  const [schedules, setSchedules] = useState(null);
+  const [scheduleOptions, setScheduleOptions] = useState(null);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
 
-  // useEffect(() => {
-  //   fetch(`${BackendURI}/schedules/:id`)
-  //   .then((response) => response.json())
-  //   .then((data) => {
-  //     const options = data.map((schedule) => ({
-  //       label: schedule.name,
-  //       value: schedule.id,
-  //     }));
-  //     setSchedules(options);
-  //   })
-  //   .catch((error) => {
-  //     console.error("Error fetching schedules:", error);
-  //   });
-  // }, []);
+  useEffect(() => {
+    fetch("http://localhost:8000/schedules")
+      .then((response) => response.json())
+      .then((data) => {
+        const options = data.map((schedule) => ({
+          label: schedule.name,
+          value: schedule,
+        }));
+        setScheduleOptions(options);
+      })
+      .catch((error) => {
+        console.error("Error fetching schedules:", error);
+      });
+  }, []);
 
   const options = [
     { value: "Select Schedule", label: "Select Schedule" },
@@ -30,25 +31,28 @@ function Schedules() {
     { value: "W2024", label: "W2024" },
   ];
 
-  //setSchedules(options);
-
-  const handleChange = (selectedOption) => {
-    setSelectedOption(selectedOption);
-    setSelectedSchedule(selectedOption);
+  const handleScheduleSelect = (selectedOption) => {
+    setSelectedSchedule(selectedOption.value);
   };
 
   return (
     <div className="content-center text-center">
-      <LogoutHeader text="Schedules" selectedOption={selectedOption} />
+      <LogoutHeader text="Schedules" />
 
-      <div className="mx-auto w-1/2 items-center">
-        <Select
-          className="w-100 mt-5 mb-5 font-bold text-xl"
-          options={options}
-          onChange={handleChange}
-          placeholder="Select Schedule"
-          menuPlacement="auto"
-        />
+      <div className="flex justify-between mt-5 mx-4 mb-4">
+        <div className="w-1/5"> </div>
+        <div className="w-3/5 pr-2 items-center justify-end">
+          <Select
+            className="font-bold text-xl w-100"
+            options={scheduleOptions}
+            onChange={handleScheduleSelect}
+            placeholder="Select Schedule"
+            menuPlacement="auto"
+          />
+        </div>
+        <div className="w-1/5 item-center justify-end">
+          <AddSchedule />
+        </div>
       </div>
 
       {selectedSchedule && (
