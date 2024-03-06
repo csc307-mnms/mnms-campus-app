@@ -59,11 +59,7 @@ function App() {
           <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
           <Route
             path={`/${SectionID.Profile}`}
-<<<<<<< HEAD
             element={<ProfilePage token={token} />}
-=======
-            element={<ProfilePage token={token}/>}
->>>>>>> 10c94f8 (Added profile page, routes off of navigation bar)
           />
         </Routes>
       </BrowserRouter>

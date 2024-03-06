@@ -2,13 +2,13 @@
   "name": "express-backend",
   "version": "1.0.0",
   "description": "Backend handler for the MnMs app",
-  "main": "src/backend.js",
+  "main": "index.js",
   "scripts": {
     "lint": "npx eslint . && npx prettier --check .",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "dev": "npx nodemon src/backend.js",
-    "start": "npx nodemon src/backend.js",
-    "upload-atlas-uri": "read -p 'Enter Atlas Connection URI: ' fB5NxVFMoMaVFKa4 && echo 'ATLAS_URI=\"'fB5NxVFMoMaVFKa4'\"' >> .env"
+    "start": "node src/backend.js",
+    "upload-atlas-uri": "read -p 'Enter Atlas Connection URI: ' ATLAS_CONNECTION_URI && echo 'ATLAS_URI=\"'$ATLAS_CONNECTION_URI'\"' >> .env"
   },
   "author": "",
   "license": "ISC",
