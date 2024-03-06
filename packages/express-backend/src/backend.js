@@ -10,7 +10,7 @@ import shuttleRoutes from "./routes/shuttleRoutes.js";
 import coureseRoutes from "./routes/coursesRoutes.js";
 
 const app = express();
-const port = 8000;
+const port = process.env.NODE_ENV === "production" ? process.env.PORT : 8000;
 
 app.use(cors());
 app.use(express.json());
@@ -28,8 +28,8 @@ app.use("/courses", coureseRoutes);
 
 utils.connectToDatabase();
 
-app.listen(process.env.PORT || port, () => {
-  console.log("REST API is listening.");
+app.listen(port, () => {
+  console.log(`REST API is listening on port ${port}.`);
 });
 
 export default app;

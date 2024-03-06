@@ -2,7 +2,7 @@
   "name": "express-backend",
   "version": "1.0.0",
   "description": "Backend handler for the MnMs app",
-  "main": "index.js",
+  "main": "src/backend.js",
   "scripts": {
     "lint": "cross-env npx eslint . && npx prettier --check .",
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
