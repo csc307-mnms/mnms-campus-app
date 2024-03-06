@@ -9,7 +9,7 @@
     "format": "cross-env npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "lint": "cross-env npx eslint .",
     "release": "cross-env npm run format && npm run lint",
-    "start": "cross-env npm run -w react-frontned start"
+    "start": "cross-env npm run -w react-frontend start"
   },
   "repository": {
     "type": "git",

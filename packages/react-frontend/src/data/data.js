@@ -5,8 +5,15 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const BackendURI = "http://polybuddy-api.azurewebsites.net";
-// export const BackendURI = "http://localhost:8000";
+function getBackendURI() {
+  if (process.env.NODE_ENV === "production") {
+    return "http://polybuddy-api.azurewebsites.net";
+  } else {
+    return "http://localhost:8000";
+  }
+}
+
+export const BackendURI = getBackendURI();
 
 export const SectionID = {
   Schedules: "schedules",

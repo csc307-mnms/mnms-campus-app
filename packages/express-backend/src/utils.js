@@ -3,7 +3,7 @@ import process from "process";
 import dotenv from "dotenv";
 
 function getAtlasURI() {
-  if (process.env.ATLAS_URI) {
+  if (process.env.NODE_ENV === "production") {
     return process.env.ATLAS_URI;
   } else {
     dotenv.config();
