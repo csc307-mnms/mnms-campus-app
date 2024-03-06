@@ -16,7 +16,7 @@ function CampusMap() {
   const [directions, setDirections] = useState(null);
 
   useEffect(() => {
-    fetch(`${BackendURI}/buildings`)
+    fetch(`${BackendURI}/buildings/`)
       .then((response) => response.json())
       .then((data) => {
         const options = data.map((building) => ({
