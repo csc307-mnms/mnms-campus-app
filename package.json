@@ -4,12 +4,12 @@
   "description": "Campus app for CSC 307",
   "main": "index.js",
   "scripts": {
-    "installHooks": "cross-env-shell git config core.hooksPath hooks && npm install --save-dev @babel/plugin-proposal-private-property-in-object@^7.21.11",
+    "installHooks": "git config core.hooksPath hooks && npm install --save-dev @babel/plugin-proposal-private-property-in-object@^7.21.11",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "format": "cross-env npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "lint": "cross-env npx eslint .",
-    "release": "cross-env npm run format && npm run lint",
-    "start": "cross-env npm run -w react-frontend start"
+    "format": "npx prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
+    "lint": "npx eslint .",
+    "release": "npm run format && npm run lint",
+    "start": "npm run -w react-frontend start"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,6 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-formatter-codeframe": "^7.32.1",
