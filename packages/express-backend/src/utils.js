@@ -14,6 +14,7 @@ function getAtlasURI() {
 function connectToDatabase() {
   mongoose.set("debug", true);
   const uri = getAtlasURI();
+  console.log("ATLAS_URI: ", uri);
   if (!uri) {
     console.error("ATLAS_URI not set");
     console.error("Please run `npm run upload-atlas-uri` to set it.");

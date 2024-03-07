@@ -10,7 +10,9 @@ import shuttleRoutes from "./routes/shuttleRoutes.js";
 import coureseRoutes from "./routes/coursesRoutes.js";
 
 const app = express();
-const port = process.env.NODE_ENV === "production" ? process.env.PORT : 8000;
+const port = process.env.PORT ? process.env.PORT : 8000;
+
+console.log("Port is: ", port);
 
 app.use(cors());
 app.use(express.json());
