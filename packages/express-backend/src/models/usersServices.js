@@ -35,6 +35,22 @@ const usersServices = {
     return userModel.findOne({ username: username });
   },
 
+  updatePass: function (username, newPassword) {
+    // Hash the new password before updating
+    const hashedPassword = bcrypt.hashSync(newPassword, 10);
+
+    userModel.updateOne(
+      { username: username },
+      { $set: { password: hashedPassword }}
+    )
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+  },
+
   authenticateUser: function (username, password) {
     return new Promise((resolve, reject) => {
       this.findUserByUsername(username)
