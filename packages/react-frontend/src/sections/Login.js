@@ -14,7 +14,7 @@ function Login({ setToken }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${BackendURI}/users/authenticate/`, {
+    fetch(`${BackendURI}/users/authenticate`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

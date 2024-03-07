@@ -7,7 +7,7 @@ import {
 
 function getBackendURI() {
   if (process.env.NODE_ENV === "production") {
-    return "http://polybuddy-api.azurewebsites.net";
+    return "https://polybuddy-api.azurewebsites.net";
   } else {
     return "http://localhost:8000";
   }
