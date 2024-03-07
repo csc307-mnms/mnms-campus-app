@@ -36,20 +36,42 @@ const usersServices = {
   },
 
   updatePass: function (username, newPassword) {
-    // Hash the new password before updating
-    const hashedPassword = bcrypt.hashSync(newPassword, 10);
-
-    userModel.updateOne(
-      { username: username },
-      { $set: { password: hashedPassword }}
-    )
-    .then((result) => {
-      console.log(result);
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+    let newSalt; 
+  
+    this.findUserByUsername(username)
+      .then((user) => {
+        if (!user) {
+          resolve(null);
+        }
+        return bcrypt.genSalt(10)
+          .then((generatedSalt) => {
+            newSalt = generatedSalt; 
+            return bcrypt.hash(newPassword, newSalt);
+          })
+          .then((hashedPassword) => {
+            const id = user._id;
+            return userModel.updateOne(
+              { _id: id }, 
+              { 
+                $set: { 
+                  password: hashedPassword,
+                  salt: newSalt
+                } 
+              }
+            );
+          })
+          .then((result) => {
+            console.log(result);
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
+  
 
   authenticateUser: function (username, password) {
     return new Promise((resolve, reject) => {

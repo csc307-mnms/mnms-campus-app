@@ -52,14 +52,14 @@ router.post("/authenticate", async (req, res) => {
 });
 
 router.post("/pass", async (req, res) => {
-  const { username, password, newpass} = req.body;
+  const { username, password, newpass } = req.body;
   userServices.authenticateUser(username, password).then((user) => {
     if (user) {
       userServices.updatePass(username, newpass);
       res.status(200).send(newpass);
     } else {
       res.status(401).send("Invalid username or current password");
-    };
+    }
   });
 });
 
