@@ -18,7 +18,7 @@ function CreateAccount() {
       setError("Passwords do not match");
       return;
     }
-    fetch(`${BackendURI}/users`, {
+    fetch(`${BackendURI}/users/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
