@@ -30,18 +30,35 @@ function CampusMap() {
       });
   }, []);
 
-  const getUserLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setUserLocation({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
-      });
-    } else {
-      console.error("Geolocation is not supported by this browser.");
+  useEffect(() => {
+    async function fetchUserLocation() {
+      try {
+        const location = await getUserLocation();
+        setUserLocation(location);
+      } catch (error) {
+        console.error("Error fetching user location:", error);
+      }
     }
-  };
+    fetchUserLocation();
+  }, []);
+
+  async function getUserLocation() {
+    return new Promise((resolve, reject) => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            resolve({ latitude, longitude });
+          },
+          (error) => {
+            reject(error);
+          },
+        );
+      } else {
+        reject(new Error("Geolocation is not supported by this browser."));
+      }
+    });
+  }
 
   const handleBuildingSelect = (selectedOption) => {
     setSelectedBuilding(selectedOption.value);
@@ -50,11 +67,11 @@ function CampusMap() {
   const handleDirections = () => {
     if (!selectedBuilding) return;
 
-    getUserLocation();
+    console.log("userLocation", userLocation);
 
     const currentPosition = new window.google.maps.LatLng({
-      lat: userLocation.lat,
-      lng: userLocation.lng,
+      lat: userLocation.latitude,
+      lng: userLocation.longitude,
     });
 
     const destinationPosition = new window.google.maps.LatLng({
@@ -82,23 +99,29 @@ function CampusMap() {
 
   return (
     <div className="text-center">
-      <LogoutHeader text="Campus Map" />
-      <Select
-        options={buildingOptions}
-        onChange={handleBuildingSelect}
-        placeholder="Search for a building"
-      />
-      <button onClick={handleDirections}>Get Directions</button>
-      <LoadScript googleMapsApiKey="AIzaSyDDQYpqY1kkU_HeXVNnkwryQEeKR8fusd0">
-        <GoogleMap
-          mapContainerStyle={{ width: "100%", height: "660px" }}
-          center={{ lat: 35.30081350938093, lng: -120.66024162824894 }}
-          zoom={15}
-        >
-          {directions && <DirectionsRenderer directions={directions} />}
-        </GoogleMap>
-      </LoadScript>
-      <NavBar activePage="map" />
+      <div>
+        <LogoutHeader text="Campus Map" />
+        <Select
+          options={buildingOptions}
+          onChange={handleBuildingSelect}
+          placeholder="Search for a building"
+        />
+        <button onClick={handleDirections}>Get Directions</button>
+      </div>
+      <div className="">
+        <LoadScript googleMapsApiKey="AIzaSyDDQYpqY1kkU_HeXVNnkwryQEeKR8fusd0">
+          <GoogleMap
+            mapContainerStyle={{ height: "100%", width: "100%" }}
+            center={{ lat: 35.30081350938093, lng: -120.66024162824894 }}
+            zoom={15}
+          >
+            {directions && <DirectionsRenderer directions={directions} />}
+          </GoogleMap>
+        </LoadScript>
+      </div>
+      <div className="fixed bottom-0 left-0 right-0">
+        <NavBar activePage="map" />
+      </div>
     </div>
   );
 }
