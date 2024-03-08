@@ -111,7 +111,7 @@ function CampusMap() {
       <div className="">
         <LoadScript googleMapsApiKey="AIzaSyDDQYpqY1kkU_HeXVNnkwryQEeKR8fusd0">
           <GoogleMap
-            mapContainerStyle={{ height: "100%", width: "100%" }}
+            mapContainerStyle={{ height: "75vh", width: "100%" }}
             center={{ lat: 35.30081350938093, lng: -120.66024162824894 }}
             zoom={15}
           >
