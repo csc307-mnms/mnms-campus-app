@@ -1,7 +1,7 @@
 import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import React, { useState, useEffect } from "react";
-import { BackendURI } from "../data/data.js";
+import { SectionID, BackendURI } from "../data/data.js";
 
 function ProfilePage({ token }) {
   const [email, setEmail] = useState("");
@@ -25,18 +25,26 @@ function ProfilePage({ token }) {
     <>
       <LogoutHeader text="Profile" />
 
-      <div>
+      <div className="mx-auto w-3/4 mt-12 mb-8">
         <p className="text-center">Username</p>
-        <p className="bg-[#e5e7eb] px-1 rounded w-50 text-center shadow-lg h-10 mt-2">
+        <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg h-10 mt-2">
           {JSON.parse(atob(token.split(".")[1])).username}
         </p>
         <p className="text-center">Email</p>
-        <p className="bg-[#e5e7eb] px-1 rounded w-50 text-center shadow-lg h-10 mt-2">
+        <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg h-10 mt-2">
           {email}
         </p>
+        <button
+          aria-label="Change Password Button"
+          onClick={() => (window.location.href = `${SectionID.ChangePass}`)}
+        >
+          Change Password
+        </button>
       </div>
 
-      <NavBar activePage="profile" />
+      <div className="fixed bottom-0 left-0 right-0">
+        <NavBar activePage="profile" />
+      </div>
     </>
   );
 }
