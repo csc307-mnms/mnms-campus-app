@@ -6,6 +6,7 @@ import ForgotPassword from "./sections/ForgotPassword.js";
 import ProfilePage from "./sections/ProfilePage.js";
 import Map from "./sections/Map.js";
 import Schedules from "./sections/Schedules.js";
+import Shuttle from "./sections/Shuttle.js";
 import NewSchedule from "./sections/NewSchedule.js";
 import { SectionID } from "./data/data.js";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -54,6 +55,9 @@ function App() {
 
           {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />
+
+          {/* Shuttle Section */}
+          <Route path={`/${SectionID.Shuttle}`} element={<Shuttle />} />
 
           {/* Change Password Sections */}
           <Route
