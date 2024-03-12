@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
-import user from "./user.js";
-import usersServices from "./usersServices.js";
+import user from "../src/models/user.js";
+import usersServices from "../src/models/usersServices.js";
 import { jest } from "@jest/globals";
 
 describe("testing usersServices", () => {
