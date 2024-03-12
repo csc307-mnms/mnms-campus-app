@@ -51,23 +51,22 @@ function ChangePass({ token }) {
       },
       body: JSON.stringify({ username, password, newpass }),
     })
-    .then((res) => {
-      if (res.ok) {
-        setPasswordChanged(true);
-        setError("");
-        return res.json();
-      } else if (res.status === 401) {
-        throw new Error("Invalid current password");
-      } else {
-        setPasswordChanged(false);
-        throw new Error("Error changing pass");
-      }
-    })
-    .catch((error) => {
+      .then((res) => {
+        if (res.ok) {
+          setPasswordChanged(true);
+          setError("");
+          return res.json();
+        } else if (res.status === 401) {
+          throw new Error("Invalid current password");
+        } else {
+          setPasswordChanged(false);
+          throw new Error("Error changing pass");
+        }
+      })
+      .catch((error) => {
         setPasswordChanged(false);
         setError(error.message);
-    });
-    
+      });
   };
 
   return (
@@ -107,8 +106,14 @@ function ChangePass({ token }) {
         />
 
         {buttonClicked && (
-          <div className={passwordChanged ? "text-green-600 mt-4" : "text-red-600 mt-4"}>
-            {passwordChanged ? "Password changed successfully!" : "Password change failed. Please try again."}
+          <div
+            className={
+              passwordChanged ? "text-green-600 mt-4" : "text-red-600 mt-4"
+            }
+          >
+            {passwordChanged
+              ? "Password changed successfully!"
+              : "Password change failed. Please try again."}
           </div>
         )}
 

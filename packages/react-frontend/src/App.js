@@ -56,7 +56,11 @@ function App() {
           <Route path={`/${SectionID.Map}`} element={<Map />} />
 
           {/* Change Password Sections */}
-          <Route path={`/${SectionID.ChangePass}`} element={<ChangePass />} />
+          <Route
+            path={`/${SectionID.ChangePass}`}
+            element={<ChangePass token={token} />}
+          />
+
           <Route
             path={`/${SectionID.Profile}`}
             element={<ProfilePage token={token} />}
