@@ -1,11 +1,88 @@
 //homechangepass.js
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../components/Button.js";
 import backgroundImage from "../resources/calpolycampus.jpg";
 import BackHeader from "../components/BackHeader.js";
 import TextBox from "../components/TextBox.js";
+import { BackendURI } from "../data/data.js";
+import { useLocation } from "react-router-dom";
 
 function ForgotChangePass() {
+  const location = useLocation();
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+  const [newpass, setNewPass] = useState();
+  const [confirmPassword, setConfirmPassword] = useState();
+  const [error, setError] = useState();
+  const [passwordChanged, setPasswordChanged] = useState(false);
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(location.search);
+    const username = searchParams.get("username");
+    setUsername(username);
+
+    if (username) {
+      fetch(`${BackendURI}/users/username/${username}`)
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            throw new Error("Error fetching user data");
+          }
+        })
+        .then((data) => {
+          setUsername(data.username);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  }, [location]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    setButtonClicked(true);
+    if (newpass !== confirmPassword) {
+      setPasswordChanged(false);
+      setError("Passwords do not match");
+      return;
+    }
+    if (newpass === "") {
+      setPasswordChanged(false);
+      setError("New Password is empty");
+      return;
+    }
+    if (newpass === password) {
+      setPasswordChanged(false);
+      setError("New Password is the same as current. Please enter a new one");
+      return;
+    }
+    fetch(`${BackendURI}/users/pass`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password, newpass }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setPasswordChanged(true);
+          setError("");
+          return res.json();
+        } else if (res.status === 401) {
+          throw new Error("Invalid current password");
+        } else {
+          setPasswordChanged(false);
+          throw new Error("Error changing pass");
+        }
+      })
+      .catch((error) => {
+        setPasswordChanged(false);
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="content-center text-center">
       <BackHeader text="Change Password" />
@@ -39,6 +116,7 @@ function ForgotChangePass() {
             text="Current Password "
             type="password"
             className="mx-auto w-3/4 mt-5 mb-3 w-80"
+            onChange={(e) => setPassword(e.target.value)}
           />
 
           {/* New Password box */}
@@ -46,6 +124,7 @@ function ForgotChangePass() {
             text="New Password"
             type="password"
             className="mx-auto w-3/4 mb-3 w-80"
+            onChange={(e) => setNewPass(e.target.value)}
           />
 
           {/* Confirm Password box */}
@@ -53,13 +132,30 @@ function ForgotChangePass() {
             text="Confirm Password"
             type="password"
             className="mx-auto w-3/4 mb-12 w-80"
+            onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
           {/* Create Account Button */}
           <Button
             text="Change Password"
             className="bg-[#003831] text-white font-bold py-2 px-24 shadow-xl rounded mt-10 w-80 whitespace-nowrap"
+            onClick={handleClick}
           />
+
+          {buttonClicked && (
+            <div
+              className={
+                passwordChanged ? "text-green-600 mt-4" : "text-red-600 mt-4"
+              }
+            >
+              {passwordChanged
+                ? "Password changed successfully!"
+                : "Password change failed. Please try again."}
+            </div>
+          )}
+
+          {/* Error Message */}
+          {error && <p className="text-red-500 text-center">{error}</p>}
         </form>
       </div>
     </div>
