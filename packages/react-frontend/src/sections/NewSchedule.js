@@ -18,30 +18,31 @@ function NewSchedule(props) {
       setSuccess(null);
       return;
     }
-    // const formData = new FormData();
-    // formData.append('name', name);
-    // formData.append('file', file);
-    // body: FormData,
-    fetch("http://localhost:8000/schedules", {
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("icsFile", file);
+    console.log(name);
+    console.log(file);
+    const response = fetch("http://localhost:8000/schedules/upload", {
       method: "POST",
-
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, file }),
+      // headers: {
+      //   "Content-Type": "application/multipart",
+      // },
+      body: formData,
     })
       .then((res) => {
         if (res.ok) {
           setSuccess("Schedule added successfully");
-          setScheduleName("");
-          setScheduleFile(null);
         } else if (res.status === 409) {
           setError("Schedule already exists");
           setSuccess(null);
         } else {
+          console.log(res);
           setError("Error creating schedule");
           setSuccess(null);
         }
+        setScheduleName("");
+        setScheduleFile(null);
       })
       .catch((error) => {
         setError(error.message);
@@ -56,7 +57,7 @@ function NewSchedule(props) {
       <h1 className="font-bold text-5xl mt-12 mb-12">Create New Schedule</h1>
       <h2 className="font-bold text-2xl ml-3 mr-3 mb-12">
         Please navigate to your Cal Poly portal and download the schedule.ics
-        file to your schedule.
+        file for your schedule.
       </h2>
 
       <form onSubmit={handleSubmit}>
@@ -73,7 +74,9 @@ function NewSchedule(props) {
           name="file"
           type="file"
           className="mx-auto w-3/4 mb-8"
-          onChange={(e) => setScheduleFile(e.target.value)}
+          onChange={(e) => {
+            setScheduleFile(e.target.files[0]);
+          }}
         />
 
         <Button

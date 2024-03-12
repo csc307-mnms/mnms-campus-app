@@ -6,7 +6,13 @@ const FileUpload = ({ text, className, onChange }) => {
       <label htmlFor="name" className="block font-bold text-left">
         {text}
       </label>
-      <input type="file" className="w-full h-10 mt-4" onChange={onChange} />
+      <input
+        id="file"
+        name="file"
+        type="file"
+        className="w-full h-10 mt-4"
+        onChange={onChange}
+      />
     </div>
   );
 };

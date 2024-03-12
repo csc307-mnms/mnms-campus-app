@@ -25,14 +25,14 @@ function Schedules() {
       });
   }, []);
 
-  const options = [
-    { value: "Select Schedule", label: "Select Schedule" },
-    { value: "F2023", label: "F2023" },
-    { value: "W2024", label: "W2024" },
-  ];
-
   const handleScheduleSelect = (selectedOption) => {
     setSelectedSchedule(selectedOption.value);
+    // const courseIds = selectedSchedule.courses;
+    // fetch(`http://localhost:8000/courses/${courseid}`)
+    // .then((response) => response.json())
+    // .then((data) => {
+    //   const courses = data.map
+    // })
   };
 
   return (

@@ -11,6 +11,8 @@ const upload = multer();
 
 router.post("/upload", upload.single("icsFile"), async (req, res) => {
   try {
+    const name = req.body.name;
+    console.log("FILE:", req.file);
     const data = ical.parseICS(req.file.buffer.toString());
     const days = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
     const courseIds = [];
@@ -35,7 +37,10 @@ router.post("/upload", upload.single("icsFile"), async (req, res) => {
     }
 
     console.log(courseIds);
-    const schedule = await scheduleServices.addSchedule({ courses: courseIds });
+    const schedule = await scheduleServices.addSchedule({
+      name: name,
+      courses: courseIds,
+    });
     console.log("Schedule created:", schedule);
 
     res.status(200).json({
