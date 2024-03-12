@@ -44,7 +44,7 @@ function ChangePass({ token }) {
       setError("New Password is the same as current. Please enter a new one");
       return;
     }
-    fetch("http://localhost:8000/users/pass", {
+    fetch(`${BackendURI}/users/pass`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
