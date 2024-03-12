@@ -1,5 +1,5 @@
-import buildingServices from "./buildingsServices.js";
-import buildings from "./buildings.js";
+import buildingServices from "../src/models/buildingsServices.js";
+import buildings from "../src/models/buildings.js";
 import { jest } from "@jest/globals";
 
 const create = buildings.create;

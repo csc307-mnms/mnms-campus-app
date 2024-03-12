@@ -1,5 +1,5 @@
-import scheduleServices from "./scheduleServices.js";
-import schedule from "./schedule.js";
+import scheduleServices from "../src/models/scheduleServices.js";
+import schedule from "../src/models/schedule.js";
 import { jest } from "@jest/globals";
 
 const create = schedule.create;

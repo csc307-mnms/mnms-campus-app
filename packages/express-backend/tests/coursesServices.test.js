@@ -1,5 +1,5 @@
-import coursesServices from "./coursesServices.js";
-import course from "./course.js";
+import coursesServices from "../src/models/coursesServices.js";
+import course from "../src/models/course.js";
 import { jest } from "@jest/globals";
 
 course.findOne = jest.fn();
