@@ -35,6 +35,10 @@ const usersServices = {
     return userModel.findOne({ username: username });
   },
 
+  findUserByEmail: function (email) {
+    return userModel.findOne({ email: email });
+  },
+
   updatePass: function (username, newPassword) {
     let newSalt;
 

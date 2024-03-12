@@ -39,6 +39,16 @@ router.get("/username/:username", async (req, res) => {
   res.send(user);
 });
 
+router.get("/email/:email", async (req, res) => {
+  const email = req.params.email;
+  const user = await userServices.findUserByEmail(email);
+  if (user === null) {
+    res.status(401).send("Invalid email");
+  } else {
+    res.send(user);
+  }
+});
+
 router.post("/authenticate", async (req, res) => {
   const { username, password } = req.body;
   userServices.authenticateUser(username, password).then((user) => {
