@@ -4,6 +4,7 @@ import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import Calendar from "../components/Calendar.js";
 import AddSchedule from "../components/AddSchedule.js";
+import { BackendURI } from "../data/data.js";
 
 function Schedules() {
   const [schedules, setSchedules] = useState(null);
@@ -11,7 +12,7 @@ function Schedules() {
   const [selectedSchedule, setSelectedSchedule] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8000/schedules")
+    fetch(`${BackendURI}/schedules`)
       .then((response) => response.json())
       .then((data) => {
         const options = data.map((schedule) => ({
@@ -26,13 +27,8 @@ function Schedules() {
   }, []);
 
   const handleScheduleSelect = (selectedOption) => {
-    setSelectedSchedule(selectedOption.value);
-    // const courseIds = selectedSchedule.courses;
-    // fetch(`http://localhost:8000/courses/${courseid}`)
-    // .then((response) => response.json())
-    // .then((data) => {
-    //   const courses = data.map
-    // })
+    setSelectedSchedule(selectedOption.value._id);
+    console.log(selectedOption.value._id);
   };
 
   return (
@@ -55,9 +51,7 @@ function Schedules() {
         </div>
       </div>
 
-      {selectedSchedule && (
-        <Calendar selectedScheduleId={selectedSchedule.value} />
-      )}
+      {selectedSchedule && <Calendar selectedScheduleId={selectedSchedule} />}
 
       <div className="fixed bottom-0 left-0 right-0">
         <NavBar activePage="schedule" />
