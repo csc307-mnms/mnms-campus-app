@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const shuttleLocationSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
   latitude: {
     type: Number,
     required: true,
@@ -9,8 +13,12 @@ const shuttleLocationSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  timestamp: {
-    type: Date,
+  activeDay: {
+    type: Boolean,
+    required: true,
+  },
+  activeNight: {
+    type: Boolean,
     required: true,
   },
 });

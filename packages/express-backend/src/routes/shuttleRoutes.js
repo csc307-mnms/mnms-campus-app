@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const location = await shuttleServices.findMostRecentLocation();
+  const location = await shuttleServices.getLocations();
   res.send(location);
 });
 
