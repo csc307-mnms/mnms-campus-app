@@ -21,9 +21,27 @@ function Shuttle() {
       .then((data) => {
         const options = data.map((stop) => ({
           label: stop.stopName,
+          day: stop.activeDay,
+          night: stop.activeNight,
           value: stop,
         }));
-        setShuttleOptions(options);
+        let new_options = [];
+        options.forEach((stop) => {
+          if (
+            new Date().getHours() <= 18 &&
+            new Date().getHours() >= 7 &&
+            stop.day
+          ) {
+            new_options.push(stop);
+          } else if (
+            new Date().getHours() <= 7 ||
+            (new Date().getHours() >= 18 && stop.night)
+          ) {
+            new_options.push(stop);
+          }
+        });
+
+        setShuttleOptions(new_options);
       })
       .catch((error) => {
         console.error("Error fetching stops:", error);
@@ -66,17 +84,13 @@ function Shuttle() {
 
   const handleDirections = () => {
     if (!selectedStop) return;
-
+    console.log(new Date().getHours());
     console.log("userLocation", userLocation);
 
     const currentPosition = new window.google.maps.LatLng({
       lat: userLocation.latitude,
       lng: userLocation.longitude,
     });
-    
-    for(let i = 0; i < shuttleOptions.length; i++) {
-      
-    }
 
     const destinationPosition = new window.google.maps.LatLng({
       lat: selectedStop.latitude,

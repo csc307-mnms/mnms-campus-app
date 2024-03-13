@@ -24,7 +24,7 @@ function ProfilePage({ token }) {
   return (
     <>
       <div className="content-center text-center">
-        <LogoutHeader text="Profile" className="text-center"/>
+        <LogoutHeader text="Profile" className="text-center" />
 
         <div className="mx-auto w-3/4 mt-12 mb-8">
           <p className="font-bold">Username</p>
@@ -36,19 +36,19 @@ function ProfilePage({ token }) {
             {email}
           </p>
           <div className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold text-right">
-          <button
-            aria-label="Change Password Button" 
-            onClick={() => (window.location.href = `${SectionID.ChangePass}`)}
-          >
-            Change Password
-          </button>
+            <button
+              aria-label="Change Password Button"
+              onClick={() => (window.location.href = `${SectionID.ChangePass}`)}
+            >
+              Change Password
+            </button>
           </div>
         </div>
 
         <div className="fixed bottom-0 left-0 right-0">
           <NavBar activePage="profile" />
         </div>
-        </div>
+      </div>
     </>
   );
 }

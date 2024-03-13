@@ -20,7 +20,7 @@ const shuttleLocationSchema = new mongoose.Schema({
   activeNight: {
     type: Boolean,
     required: true,
-  }
+  },
 });
 
 const ShuttleLocation = mongoose.model(
