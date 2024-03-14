@@ -20,11 +20,14 @@ function ForgotPassword() {
       .then((res) => {
         if (res.ok) {
           setError("");
-          window.location.href = `${SectionID.ForgotChangePass}`;
           return res.json();
         } else {
           throw new Error("Invalid Email");
         }
+      })
+      .then((data) => {
+        const username = data.username;
+        window.location.href = `${SectionID.ForgotChangePass}?username=${username}`;
       })
       .catch((error) => {
         setError(error.message);
