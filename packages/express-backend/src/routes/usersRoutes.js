@@ -1,5 +1,6 @@
 import express from "express";
 import userServices from "../models/usersServices.js";
+import scheduleServices from "../models/scheduleServices.js";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
@@ -19,6 +20,17 @@ router.get("/", async (req, res) => {
   console.log("users");
   const users = await userServices.getUsers();
   res.send(users);
+});
+
+router.get("/schedules/:username", async (req, res) => {
+  const username = req.params.username;
+  await userServices.findUserByUsername(username).then((user) => {
+    if (user) {
+      res.send(user.schedules);
+    } else {
+      res.status(404).send("User not found");
+    }
+  });
 });
 
 router.delete("/:id", async (req, res) => {
@@ -89,6 +101,26 @@ router.post("/overwritePass", async (req, res) => {
       console.error("Error updating password:", error);
       res.status(500).send("Internal Server Error");
     });
+});
+
+router.post("/uploadSchedule", async (req, res) => {
+  const { username, scheduleId } = req.body;
+  scheduleServices.findScheduleById(scheduleId).then((schedule) => {
+    console.log(schedule);
+    userServices
+      .uploadSchedule(username, schedule)
+      .then((result) => {
+        if (result) {
+          res.status(200).send("Schedule uploaded successfully");
+        } else {
+          res.status(404).send("User not found");
+        }
+      })
+      .catch((error) => {
+        console.error("Error uploading schedule:", error);
+        res.status(500).send("Internal Server Error");
+      });
+  });
 });
 
 export default router;

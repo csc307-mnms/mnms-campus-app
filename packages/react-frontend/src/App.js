@@ -48,10 +48,16 @@ function App() {
           <Route path={"/"} element={<Schedules />} />
 
           {/* Schedules Section */}
-          <Route path={`/${SectionID.Schedules}`} element={<Schedules />} />
+          <Route
+            path={`/${SectionID.Schedules}`}
+            element={<Schedules token={token} />}
+          />
 
           {/* New Schedule Section */}
-          <Route path={`/${SectionID.NewSchedule}`} element={<NewSchedule />} />
+          <Route
+            path={`/${SectionID.NewSchedule}`}
+            element={<NewSchedule token={token} />}
+          />
 
           {/* Map Section */}
           <Route path={`/${SectionID.Map}`} element={<Map />} />

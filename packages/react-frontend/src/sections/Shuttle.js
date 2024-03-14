@@ -49,34 +49,32 @@ function Shuttle() {
   }, []);
 
   useEffect(() => {
-    async function fetchUserLocation() {
-      try {
-        const location = await getUserLocation();
-        setUserLocation(location);
-      } catch (error) {
-        console.error("Error fetching user location:", error);
-      }
+    function fetchUserLocation() {
+      return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              resolve({ latitude, longitude });
+            },
+            (error) => {
+              reject(error);
+            },
+          );
+        } else {
+          reject(new Error("Geolocation is not supported by this browser."));
+        }
+      });
     }
-    fetchUserLocation();
-  }, []);
 
-  async function getUserLocation() {
-    return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            resolve({ latitude, longitude });
-          },
-          (error) => {
-            reject(error);
-          },
-        );
-      } else {
-        reject(new Error("Geolocation is not supported by this browser."));
-      }
-    });
-  }
+    fetchUserLocation()
+      .then((location) => {
+        setUserLocation(location);
+      })
+      .catch((error) => {
+        console.error("Error fetching user location:", error);
+      });
+  }, []);
 
   const handleShuttleSelect = (selectedOption) => {
     setSelectedStop(selectedOption.value);

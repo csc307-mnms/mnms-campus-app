@@ -11,6 +11,13 @@ const Calendar = ({ selectedScheduleId }) => {
     businessBeginsHour: 7,
     businessEndsHour: 21,
     showNonBusiness: false,
+    onEventClick: async (args) => {
+      await fetch(`${BackendURI}/buildings/id/${args.e.data.resource}`)
+        .then((res) => res.json())
+        .then((data) => {
+          window.location.href = `/map?building=${data.name}`;
+        });
+    },
   });
   const styles = {
     main: {
@@ -75,16 +82,18 @@ const Calendar = ({ selectedScheduleId }) => {
               start: start,
               end: end,
               text: `${course.department} ${course.number}`,
+              resource: course.location,
             });
           });
         });
         calendar.events.list = events;
+        calendar.update();
       } catch (error) {
         console.error("Error fetching courses:", error);
       }
     };
     fetchCourses();
-  }, [selectedScheduleId]);
+  });
 
   return (
     <div style={styles.main}>

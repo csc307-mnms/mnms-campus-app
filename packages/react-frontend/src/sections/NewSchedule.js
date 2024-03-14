@@ -5,11 +5,12 @@ import NavBar from "../components/NavBar.js";
 import TextBox from "../components/TextBox.js";
 import FileUpload from "../components/FileUpload.js";
 
-function NewSchedule(props) {
+function NewSchedule() {
   const [name, setScheduleName] = useState();
   const [file, setScheduleFile] = useState();
   const [error, setError] = useState();
   const [success, setSuccess] = useState(false);
+  const token = sessionStorage.getItem("token");
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,6 +20,7 @@ function NewSchedule(props) {
       return;
     }
     const formData = new FormData();
+    formData.append("username", JSON.parse(atob(token.split(".")[1])).username);
     formData.append("name", name);
     formData.append("icsFile", file);
     console.log(name);
@@ -30,6 +32,7 @@ function NewSchedule(props) {
       .then((res) => {
         if (res.ok) {
           setSuccess("Schedule added successfully");
+          return res.json();
         } else if (res.status === 409) {
           setError("Schedule already exists");
           setSuccess(null);

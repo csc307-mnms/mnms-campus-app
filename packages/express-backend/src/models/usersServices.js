@@ -39,6 +39,36 @@ const usersServices = {
     return userModel.findOne({ email: email });
   },
 
+  uploadSchedule: function (username, schedule) {
+    console.log("username", username);
+    return new Promise((resolve, reject) => {
+      this.findUserByUsername(username)
+        .then((user) => {
+          if (!user) {
+            resolve(null);
+            return;
+          }
+          const id = user._id;
+          return userModel.updateOne(
+            { _id: id },
+            {
+              $push: {
+                schedules: schedule,
+              },
+            },
+          );
+        })
+        .then((result) => {
+          console.log(result);
+          resolve(result);
+        })
+        .catch((error) => {
+          console.error(error);
+          reject(error);
+        });
+    });
+  },
+
   updatePass: function (username, newPassword) {
     let newSalt;
 

@@ -20,7 +20,7 @@ router.delete("/:id", async (req, res) => {
   res.send(building);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/id/:id", async (req, res) => {
   const id = req.params.id;
   const building = await buildingsServices.findBuildingById(id);
   res.send(building);

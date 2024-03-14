@@ -9,25 +9,44 @@ import { BackendURI } from "../data/data.js";
 function Schedules() {
   const [scheduleOptions, setScheduleOptions] = useState(null);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
+  const token = sessionStorage.getItem("token");
 
+  const username = JSON.parse(atob(token.split(".")[1])).username;
   useEffect(() => {
-    fetch(`${BackendURI}/schedules`)
-      .then((response) => response.json())
+    fetch(`${BackendURI}/users/username/${username}`)
+      .then((res) => res.json())
       .then((data) => {
-        const options = data.map((schedule) => ({
-          label: schedule.name,
-          value: schedule,
-        }));
-        setScheduleOptions(options);
+        const scheduleIds = data.schedules.map((schedule) => schedule._id);
+        Promise.all(
+          scheduleIds.map((scheduleId) =>
+            fetch(`${BackendURI}/schedules/${scheduleId}`)
+              .then((res) => res.json())
+              .catch((error) => {
+                console.error("Error fetching schedule details:", error);
+                return null;
+              }),
+          ),
+        )
+          .then((schedules) => {
+            console.log(schedules);
+            setScheduleOptions(
+              schedules.map((schedule) => ({
+                value: schedule,
+                label: schedule.name,
+              })),
+            );
+          })
+          .catch((error) => {
+            console.error("Error fetching schedules:", error);
+          });
       })
       .catch((error) => {
-        console.error("Error fetching schedules:", error);
+        console.error("Error fetching user schedules:", error);
       });
-  }, []);
+  }, [username]);
 
   const handleScheduleSelect = (selectedOption) => {
     setSelectedSchedule(selectedOption.value._id);
-    console.log(selectedOption.value._id);
   };
 
   return (
