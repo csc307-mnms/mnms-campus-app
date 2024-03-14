@@ -4,6 +4,7 @@ import ical from "ical";
 
 import scheduleServices from "../models/scheduleServices.js";
 import coursesServices from "../models/coursesServices.js";
+import usersServices from "../models/usersServices.js";
 import buildingsServices from "../models/buildingsServices.js";
 
 const router = express.Router();
@@ -11,6 +12,9 @@ const upload = multer();
 
 router.post("/upload", upload.single("icsFile"), async (req, res) => {
   try {
+    const name = req.body.name;
+    const username = req.body.username;
+    console.log("FILE:", req.file);
     const data = ical.parseICS(req.file.buffer.toString());
     const days = ["MO", "TU", "WE", "TH", "FR", "SA", "SU"];
     const courseIds = [];
@@ -35,12 +39,18 @@ router.post("/upload", upload.single("icsFile"), async (req, res) => {
     }
 
     console.log(courseIds);
-    const schedule = await scheduleServices.addSchedule({ courses: courseIds });
+    const schedule = await scheduleServices.addSchedule({
+      name: name,
+      courses: courseIds,
+    });
     console.log("Schedule created:", schedule);
 
-    res.status(200).json({
-      message: "File uploaded and processed successfully.",
-      scheduleId: schedule._id, // Sending the created schedule's ID in the response
+    await usersServices.uploadSchedule(username, schedule).then((result) => {
+      if (result) {
+        res.status(201).send(schedule);
+      } else {
+        res.status(404).send("User not found");
+      }
     });
   } catch (error) {
     console.error("Error parsing ics file:", error);

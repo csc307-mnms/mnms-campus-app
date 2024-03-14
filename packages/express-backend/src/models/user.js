@@ -26,10 +26,6 @@ const userSchema = new mongoose.Schema({
         ref: "Schedule",
         required: true,
       },
-      quarter: {
-        type: String,
-        required: true,
-      },
     },
   ],
 });

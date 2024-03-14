@@ -3,6 +3,7 @@ import {
   faMagnifyingGlass,
   faBus,
   faUser,
+  faPlus,
 } from "@fortawesome/free-solid-svg-icons";
 
 function getBackendURI() {
@@ -28,6 +29,14 @@ export const SectionID = {
   Root: "",
   ForgotPassword: "forgotpassword",
 };
+
+export const AddScheduleData = [
+  {
+    label: "Plus",
+    href: `${SectionID.NewSchedule}`,
+    icon: faPlus,
+  },
+];
 
 export const NavBarData = [
   {
