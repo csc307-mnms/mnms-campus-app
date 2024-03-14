@@ -189,7 +189,7 @@ describe("testing usersServices", () => {
       user.updateOne = jest.fn().mockResolvedValue({});
 
       const result = await usersServices.updatePass(username, newPassword);
-      expect(result).toBeUndefined();
+      expect(result).toMatchObject({});
       expect(user.findOne).toHaveBeenCalledWith({ username });
       expect(bcrypt.genSalt).toHaveBeenCalledWith(10);
       expect(bcrypt.hash).toHaveBeenCalledWith(newPassword, "newsalt");
