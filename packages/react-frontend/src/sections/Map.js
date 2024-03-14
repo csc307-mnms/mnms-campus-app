@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -10,7 +10,7 @@ import Select from "react-select";
 import { BackendURI } from "../data/data";
 
 function CampusMap() {
-  const [userLocation, setUserLocation] = useState(null);
+  const [userLocation, setUserLocation] = useState();
   const [buildingOptions, setBuildingOptions] = useState([]);
   const [selectedBuilding, setSelectedBuilding] = useState(null);
   const [directions, setDirections] = useState(null);
@@ -31,42 +31,39 @@ function CampusMap() {
   }, []);
 
   useEffect(() => {
-    async function fetchUserLocation() {
-      try {
-        const location = await getUserLocation();
-        setUserLocation(location);
-      } catch (error) {
-        console.error("Error fetching user location:", error);
-      }
+    function fetchUserLocation() {
+      return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              resolve({ latitude, longitude });
+            },
+            (error) => {
+              reject(error);
+            },
+          );
+        } else {
+          reject(new Error("Geolocation is not supported by this browser."));
+        }
+      });
     }
-    fetchUserLocation();
-  }, []);
 
-  async function getUserLocation() {
-    return new Promise((resolve, reject) => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            resolve({ latitude, longitude });
-          },
-          (error) => {
-            reject(error);
-          },
-        );
-      } else {
-        reject(new Error("Geolocation is not supported by this browser."));
-      }
-    });
-  }
+    fetchUserLocation()
+      .then((location) => {
+        setUserLocation(location);
+      })
+      .catch((error) => {
+        console.error("Error fetching user location:", error);
+      });
+  }, []);
 
   const handleBuildingSelect = (selectedOption) => {
     setSelectedBuilding(selectedOption.value);
   };
 
-  const handleDirections = () => {
+  const handleDirections = useCallback(() => {
     if (!selectedBuilding) return;
-
     console.log("userLocation", userLocation);
 
     const currentPosition = new window.google.maps.LatLng({
@@ -95,7 +92,21 @@ function CampusMap() {
         }
       },
     );
-  };
+  }, [selectedBuilding, userLocation]);
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const buildingName = urlParams.get("building");
+    if (buildingName && userLocation) {
+      const building = buildingOptions.find(
+        (building) => building.label === buildingName,
+      );
+      if (building) {
+        setSelectedBuilding(building.value);
+        handleDirections();
+      }
+    }
+  }, [buildingOptions, userLocation, handleDirections]);
 
   return (
     <div className="text-center">
