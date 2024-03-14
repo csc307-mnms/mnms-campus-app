@@ -25,14 +25,13 @@ function ProfilePage({ token }) {
     <>
       <div className="content-center text-center">
         <LogoutHeader text="Profile" className="text-center" />
-
         <div className="mx-auto w-3/4 mt-12 mb-8">
           <p className="font-bold">Username</p>
-          <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg h-10 mt-2 align-middle">
+          <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg mt-2 align-middle m-auto flex h-10 justify-center items-center">
             {JSON.parse(atob(token.split(".")[1])).username}
           </p>
-          <p className="font-bold">Email</p>
-          <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg h-10 mt-2 align-middle">
+          <p className="font-bold ">Email</p>
+          <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg mt-2 align-middle m-auto flex h-10 justify-center items-center">
             {email}
           </p>
           <div className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold text-right">
@@ -44,7 +43,6 @@ function ProfilePage({ token }) {
             </button>
           </div>
         </div>
-
         <div className="fixed bottom-0 left-0 right-0">
           <NavBar activePage="profile" />
         </div>
