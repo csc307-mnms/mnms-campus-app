@@ -61,8 +61,8 @@ function ForgotChangePass() {
     })
       .then((res) => {
         if (res.ok) {
-          window.location.href = `${SectionID.Login}`;
-          return res.json();
+          window.location.href = "/";
+          return res;
         } else if (res.status === 401) {
           throw new Error("Invalid password");
         } else {
