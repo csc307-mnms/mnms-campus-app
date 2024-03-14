@@ -34,9 +34,14 @@ function ChangePass({ token }) {
       setError("Passwords do not match");
       return;
     }
-    if (newpass === "") {
+    if (
+      newpass === "" ||
+      !newpass ||
+      confirmPassword === "" ||
+      !confirmPassword
+    ) {
       setPasswordChanged(false);
-      setError("New Password is empty");
+      setError("Missing fields");
       return;
     }
     if (newpass === password) {
