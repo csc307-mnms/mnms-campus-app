@@ -47,6 +47,7 @@ const usersServices = {
         .then((user) => {
           if (!user) {
             resolve(null);
+            return;
           }
           return bcrypt
             .genSalt(10)
@@ -68,6 +69,7 @@ const usersServices = {
             })
             .then((result) => {
               console.log(result);
+              resolve();
             });
         })
         .catch((error) => {
