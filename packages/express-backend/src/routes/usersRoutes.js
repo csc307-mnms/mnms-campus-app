@@ -77,8 +77,8 @@ router.post("/pass", async (req, res) => {
   const { username, password, newpass } = req.body;
   userServices.authenticateUser(username, password).then((user) => {
     if (user) {
-      userServices.updatePass(username, newpass).then((res) => {
-        if (res) {
+      userServices.updatePass(username, newpass).then((updateRes) => {
+        if (updateRes) {
           res.status(200).send("Password updated");
         } else {
           res.status(401).send("Invalid username or current password");
