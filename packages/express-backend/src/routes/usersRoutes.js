@@ -73,4 +73,17 @@ router.post("/pass", async (req, res) => {
   });
 });
 
+router.post("/overwritePass", async (req, res) => {
+  const { username, newpass } = req.body;
+  userServices
+    .updatePass(username, newpass)
+    .then(() => {
+      res.status(200).send("Password updated successfully");
+    })
+    .catch((error) => {
+      console.error("Error updating password:", error);
+      res.status(500).send("Internal Server Error");
+    });
+});
+
 export default router;
