@@ -13,12 +13,6 @@ const shuttleServices = {
   findLocationById(id) {
     return locations.findById(id);
   },
-  async findMostRecentLocation() {
-    const mostRecentLocation = await locations
-      .findOne()
-      .sort({ timestamp: -1 });
-    return !mostRecentLocation ? [] : mostRecentLocation;
-  },
 };
 
 export default shuttleServices;
