@@ -57,10 +57,11 @@ function ChangePass({ token }) {
       body: JSON.stringify({ username, password, newpass }),
     })
       .then((res) => {
+        console.log("pass response", res);
         if (res.ok) {
           setPasswordChanged(true);
           setError("");
-          return res.json();
+          return;
         } else if (res.status === 401) {
           throw new Error("Invalid current password");
         } else {

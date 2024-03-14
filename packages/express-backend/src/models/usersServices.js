@@ -99,7 +99,7 @@ const usersServices = {
             })
             .then((result) => {
               console.log(result);
-              resolve();
+              resolve(result);
             });
         })
         .catch((error) => {
