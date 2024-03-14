@@ -5,11 +5,18 @@ import { jest } from "@jest/globals";
 
 describe("testing usersServices", () => {
   const findOne = user.findOne;
+  const updateOne = user.updateOne;
   const compare = bcrypt.compare;
+  const gentSalt = bcrypt.genSalt;
+  const hash = bcrypt.hash;
   const findUserByUsername = usersServices.findUserByUsername;
   afterEach(() => {
     user.findOne = findOne;
+    user.updateOne = updateOne;
     bcrypt.compare = compare;
+    bcrypt.genSalt = gentSalt;
+    bcrypt.hash = hash;
+
     usersServices.findUserByUsername = findUserByUsername;
   });
 
@@ -161,6 +168,64 @@ describe("testing usersServices", () => {
       await expect(usersServices.findUserByUsername(username)).rejects.toThrow(
         error,
       );
+      expect(user.findOne).toHaveBeenCalledWith({ username });
+    });
+  });
+
+  describe("testing updatePass", () => {
+    test("should resolve with updated user when username exists", async () => {
+      const username = "john_doe";
+      const newPassword = "newpassword123";
+      const userToUpdate = {
+        _id: "1234567890",
+        username: "john_doe",
+        email: "johndoe@gmail.com",
+        password: "hashedpassword123",
+      };
+
+      user.findOne = jest.fn().mockResolvedValue(userToUpdate);
+      bcrypt.genSalt = jest.fn().mockResolvedValue("newsalt");
+      bcrypt.hash = jest.fn().mockResolvedValue("newhashedpassword");
+      user.updateOne = jest.fn().mockResolvedValue({});
+
+      const result = await usersServices.updatePass(username, newPassword);
+      expect(result).toBeUndefined();
+      expect(user.findOne).toHaveBeenCalledWith({ username });
+      expect(bcrypt.genSalt).toHaveBeenCalledWith(10);
+      expect(bcrypt.hash).toHaveBeenCalledWith(newPassword, "newsalt");
+      expect(user.updateOne).toHaveBeenCalledWith(
+        { _id: userToUpdate._id },
+        {
+          $set: {
+            password: "newhashedpassword",
+            salt: "newsalt",
+          },
+        },
+      );
+    });
+
+    test("should resolve with null when username does not exist", async () => {
+      const username = "john_doe";
+      const newPassword = "newpassword123";
+
+      user.findOne = jest.fn().mockResolvedValue(null);
+
+      const result = await usersServices.updatePass(username, newPassword);
+
+      expect(result).toBeNull();
+      expect(user.findOne).toHaveBeenCalledWith({ username });
+    });
+
+    test("should reject with error when an error occurs", async () => {
+      const username = "john_doe";
+      const newPassword = "newpassword123";
+      const error = new Error("Something went wrong");
+
+      user.findOne = jest.fn().mockRejectedValue(error);
+
+      await expect(
+        usersServices.updatePass(username, newPassword),
+      ).rejects.toThrow(error);
       expect(user.findOne).toHaveBeenCalledWith({ username });
     });
   });
