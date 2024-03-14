@@ -7,7 +7,6 @@ import AddSchedule from "../components/AddSchedule.js";
 import { BackendURI } from "../data/data.js";
 
 function Schedules() {
-  const [schedules, setSchedules] = useState(null);
   const [scheduleOptions, setScheduleOptions] = useState(null);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
 

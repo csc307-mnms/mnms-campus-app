@@ -23,11 +23,8 @@ function NewSchedule(props) {
     formData.append("icsFile", file);
     console.log(name);
     console.log(file);
-    const response = fetch("http://localhost:8000/schedules/upload", {
+    fetch("http://localhost:8000/schedules/upload", {
       method: "POST",
-      // headers: {
-      //   "Content-Type": "application/multipart",
-      // },
       body: formData,
     })
       .then((res) => {
