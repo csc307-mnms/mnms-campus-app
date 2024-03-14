@@ -10,7 +10,7 @@ const Calendar = ({ selectedScheduleId }) => {
     timeRangeSelectedHandling: "Disabled",
     // headerDateFormat: "dddd",
     businessBeginsHour: 7,
-    businessEndsHour: 18,
+    businessEndsHour: 24,
     recurrentEventsEnabled: true,
   });
   const [courses, setCourses] = useState([]);
@@ -96,46 +96,3 @@ const Calendar = ({ selectedScheduleId }) => {
 };
 
 export default Calendar;
-
-// useEffect(() => {
-//   const fetchCourses = async () => {
-//     const schedule = await (await fetch(`${BackendURI}/schedules/${selectedScheduleId}`)).json();
-
-//     const courses = await Promise.all(
-//       schedule.courses.map(courseId =>
-//         fetch(`${BackendURI}/courses/${courseId}`).then(res => res.json())
-//       )
-//     );
-//     console.log(courses);
-
-//     const calendar = calendarRef.current.control;
-//     const events = [];
-
-//     courses.forEach((course) => {
-//       course.days.forEach((day) => {
-//         const dayOfWeek = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"].indexOf(day);
-
-//         // Get the current date and adjust it to the next occurrence of the course day
-//         let date = new DayPilot.Date().firstDayOfWeek().addDays(dayOfWeek);
-//         if (date < new DayPilot.Date()) {
-//           date = date.addDays(7);
-//         }
-
-//         // Combine the date with the start and end times of the course
-//         const start = new DayPilot.Date(`${date.toString().split('T')[0]}T${course.startTime}:00`);
-//         const end = new DayPilot.Date(`${date.toString().split('T')[0]}T${course.endTime}:00`);
-
-//         events.push({
-//           start: start,
-//           end: end,
-//           text: course.name,
-//           recurrent: `FREQ=WEEKLY;COUNT=52;BYDAY=${day}`,
-//         });
-//       });
-//     });
-
-//     calendar.events.list = events;
-//     calendar.update();
-//   };
-//   fetchCourses();
-// }, [selectedScheduleId]);
