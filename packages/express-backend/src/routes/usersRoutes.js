@@ -95,7 +95,8 @@ router.post("/overwritePass", async (req, res) => {
   userServices
     .updatePass(username, newpass)
     .then(() => {
-      res.status(200).send("Password updated successfully");
+      // res.status(200).send("Password updated successfully");
+      res.status(200).send();
     })
     .catch((error) => {
       console.error("Error updating password:", error);
