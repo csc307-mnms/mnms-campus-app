@@ -123,5 +123,4 @@ router.post("/uploadSchedule", async (req, res) => {
   });
 });
 
-
 export default router;
