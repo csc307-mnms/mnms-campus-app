@@ -65,10 +65,10 @@ const Calendar = ({ selectedScheduleId }) => {
             let date = firstDayOfWeek.addDays(dayOfWeek);
 
             const originalStart = new DayPilot.Date(
-              `${course.startTime.replace("Z", "")}+08:00`,
+              `${course.startTime.replace("Z", "")}`,
             );
             const originalEnd = new DayPilot.Date(
-              `${course.endTime.replace("Z", "")}+08:00`,
+              `${course.endTime.replace("Z", "")}`,
             );
 
             const start = date
