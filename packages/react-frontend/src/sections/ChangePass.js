@@ -28,8 +28,8 @@ function ChangePass({ token }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    setButtonClicked(true);
     if (newpass !== confirmPassword) {
+      setButtonClicked(true);
       setPasswordChanged(false);
       setError("Passwords do not match");
       return;
@@ -57,19 +57,22 @@ function ChangePass({ token }) {
       body: JSON.stringify({ username, password, newpass }),
     })
       .then((res) => {
-        console.log("pass response", res);
         if (res.ok) {
           setPasswordChanged(true);
+          setButtonClicked(true);
           setError("");
           return;
         } else if (res.status === 401) {
+          setButtonClicked(true);
           throw new Error("Invalid current password");
         } else {
           setPasswordChanged(false);
+          setButtonClicked(true);
           throw new Error("Error changing pass");
         }
       })
       .catch((error) => {
+        setButtonClicked(true);
         setPasswordChanged(false);
         setError(error.message);
       });

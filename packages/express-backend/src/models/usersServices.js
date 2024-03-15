@@ -98,12 +98,10 @@ const usersServices = {
               );
             })
             .then((result) => {
-              console.log(result);
               resolve(result);
             });
         })
         .catch((error) => {
-          console.error(error);
           reject(error);
         });
     });
