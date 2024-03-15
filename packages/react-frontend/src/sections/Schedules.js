@@ -5,7 +5,6 @@ import NavBar from "../components/NavBar.js";
 import Calendar from "../components/Calendar.js";
 import AddSchedule from "../components/AddSchedule.js";
 import { BackendURI } from "../data/data.js";
-import BackHeader from "../components/BackHeader.js";
 
 function Schedules() {
   const [scheduleOptions, setScheduleOptions] = useState(null);
@@ -70,7 +69,9 @@ function Schedules() {
         </div>
       </div>
 
-      {selectedSchedule && <Calendar selectedScheduleId={selectedSchedule} />}
+      {selectedSchedule && (
+        <Calendar selectedScheduleId={selectedSchedule} className="" />
+      )}
 
       <div className="fixed bottom-0 left-0 right-0">
         <NavBar activePage="schedule" />
