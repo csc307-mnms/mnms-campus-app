@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 20
-      - name: Set up MongoDB
-        uses: supercharge/mongodb-github-action@v2
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.10.0
         with:
           mongodb-version: ${{ matrix.mongodb-version }}
       - run: npm ci

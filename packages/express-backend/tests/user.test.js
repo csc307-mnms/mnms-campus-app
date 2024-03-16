@@ -10,7 +10,7 @@ describe("testing user model", () => {
     const mongoUri = await mongoServer.getUri();
     await mongoose.connect(mongoUri, {});
   });
-  
+
   afterAll(async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
