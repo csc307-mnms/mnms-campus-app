@@ -52,8 +52,7 @@ https://github.com/csc307-mnms/mnms-campus-app.git
 2. Install required dependencies from main folder.
 
 ```
-cd packages/express-backend && npm install && cd ..
-cd packages/react-frontend && npm install && cd ..
+npm install -w express-backend -w react-frontend
 ```
 
 3. Enable git pre-commit formatter and linter.
@@ -68,8 +67,9 @@ npm run installHooks
 npm run release
 ```
 
-5. Run in both the express-backend and react-frontend directory to start the app.
+5. In two separate terminal windows, start the backend and frontend using these two commands.
 
 ```
-npm start
+npm run -w express-backend start
+npm run -w react-frontend start
 ```
