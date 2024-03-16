@@ -14,17 +14,21 @@ Michael Montemurno
 
 Michelle Chi
 
+
 ### UI Prototype
 [Our Figma UI Prototype!](https://www.figma.com/file/FOLkjA34MuM4At3CVWLIgr/Campus-Map-Prototype?type=design&node-id=81%3A50&mode=design&t=oKbUU3ubrdHgVDHl-1) 
 (Last Updated 2/29/24)
+
 
 ### Class Diagram
 [UML Class Diagram](https://github.com/csc307-mnms/mnms-campus-app/wiki/UML-Class-Diagram)
 (Last Updated 2/23/24)
 
+
 ### Code Coverage
 insert pictures
 (Last Updated 3/15/24)
+
 
 ## React App Set Up
 Required Development Tools: 
