@@ -121,12 +121,15 @@ const usersServices = {
         .then((user) => {
           if (!user) {
             resolve(null);
+            return;
           }
           bcrypt.compare(password, user.password, (err, res) => {
             if (res) {
               resolve(user);
+              return;
             } else {
               resolve(null);
+              return;
             }
           });
         })
