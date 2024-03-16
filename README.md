@@ -26,7 +26,7 @@ Michelle Chi
 
 
 ### Code Coverage
-insert pictures
+![Screenshot 2024-03-15 at 10 21 05 PM](https://github.com/csc307-mnms/mnms-campus-app/assets/90160919/cd9a927e-49e9-4b73-b331-834e8fc0f46f)
 (Last Updated 3/15/24)
 
 
