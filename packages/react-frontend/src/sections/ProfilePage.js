@@ -30,11 +30,13 @@ function ProfilePage({ token }) {
           <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg mt-2 align-middle m-auto flex h-10 justify-center items-center">
             {JSON.parse(atob(token.split(".")[1])).username}
           </p>
-          <p className="font-bold ">Email</p>
+
+          <p className="font-bold mt-7">Email</p>
           <p className="bg-[#e5e7eb] px-1 rounded w-full text-center shadow-lg mt-2 align-middle m-auto flex h-10 justify-center items-center">
             {email}
           </p>
-          <div className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold text-right">
+
+          <div className="text-blue-500 cursor-pointer self-end ml-44 mt-2 font-bold text-right mt-5">
             <button
               aria-label="Change Password Button"
               onClick={() => (window.location.href = `${SectionID.ChangePass}`)}

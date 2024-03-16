@@ -19,11 +19,6 @@ const Calendar = ({ selectedScheduleId }) => {
         });
     },
   });
-  const styles = {
-    main: {
-      flexGrow: "1",
-    },
-  };
 
   const calendarRef = useRef(null);
 
@@ -96,7 +91,8 @@ const Calendar = ({ selectedScheduleId }) => {
   });
 
   return (
-    <div style={styles.main}>
+    //scrollable but doesnt move the page overflow
+    <div className="flex-grow">
       <DayPilotCalendar {...config} ref={calendarRef} />
     </div>
   );
