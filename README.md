@@ -5,9 +5,13 @@ View our deployment [here](https://mango-coast-050270d10.5.azurestaticapps.net/)
 
 ## Developed By
 Nathan Ip
+
 Meyli Jaeger
+
 Misaki Tanabe
+
 Michael Montemurno
+
 Michelle Chi
 
 ### UI Prototype
