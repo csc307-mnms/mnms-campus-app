@@ -1,20 +1,15 @@
 import mongoose from "mongoose";
 import user from "../src/models/user.js";
 import bcrypt from "bcrypt";
-import { MongoMemoryServer } from "mongodb-memory-server";
-let mongoServer;
 
 describe("testing user model", () => {
   beforeAll(async () => {
-    mongoServer = new MongoMemoryServer();
-    const mongoUri = await mongoServer.getUri();
-    await mongoose.connect(mongoUri, {});
+    await mongoose.connect("mongodb://localhost:27017/testdb", {});
   });
 
   afterAll(async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
-    await mongoServer.stop();
   });
 
   afterEach(async () => {
