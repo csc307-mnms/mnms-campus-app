@@ -1,6 +1,5 @@
 import express from "express";
 import userServices from "../models/usersServices.js";
-import scheduleServices from "../models/scheduleServices.js";
 import jwt from "jsonwebtoken";
 
 const router = express.Router();
@@ -17,7 +16,6 @@ router.post("/", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  console.log("users");
   const users = await userServices.getUsers();
   res.send(users);
 });
@@ -75,19 +73,19 @@ router.post("/authenticate", async (req, res) => {
 
 router.post("/pass", async (req, res) => {
   const { username, password, newpass } = req.body;
-  userServices.authenticateUser(username, password).then((user) => {
-    if (user) {
-      userServices.updatePass(username, newpass).then((updateRes) => {
-        if (updateRes) {
-          res.status(200).send();
-        } else {
-          res.status(401).send("Invalid username or current password");
-        }
-      });
-    } else {
-      res.status(401).send("Invalid username or current password");
-    }
-  });
+  await userServices
+    .changePass(username, password, newpass)
+    .then((result) => {
+      if (result) {
+        res.status(200).send();
+      } else {
+        res.status(401).send("Invalid password");
+      }
+    })
+    .catch((error) => {
+      console.error("Error changing password:", error);
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 router.post("/overwritePass", async (req, res) => {
@@ -105,21 +103,12 @@ router.post("/overwritePass", async (req, res) => {
 
 router.post("/uploadSchedule", async (req, res) => {
   const { username, scheduleId } = req.body;
-  scheduleServices.findScheduleById(scheduleId).then((schedule) => {
-    console.log(schedule);
-    userServices
-      .uploadSchedule(username, schedule)
-      .then((result) => {
-        if (result) {
-          res.status(200).send("Schedule uploaded successfully");
-        } else {
-          res.status(404).send("User not found");
-        }
-      })
-      .catch((error) => {
-        console.error("Error uploading schedule:", error);
-        res.status(500).send("Internal Server Error");
-      });
+  await userServices.uploadSchedule(username, scheduleId).then((result) => {
+    if (result) {
+      res.status(200).send();
+    } else {
+      res.status(404).send("User not found");
+    }
   });
 });
 

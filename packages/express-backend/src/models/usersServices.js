@@ -1,6 +1,8 @@
 import userModel from "./user.js";
 import bcrypt from "bcrypt";
 
+import scheduleServices from "../models/scheduleServices.js";
+
 const usersServices = {
   addUser: function (user) {
     return new Promise((resolve, reject) => {
@@ -39,8 +41,17 @@ const usersServices = {
     return userModel.findOne({ email: email });
   },
 
-  uploadSchedule: function (username, schedule) {
-    console.log("username", username);
+  uploadSchedule: function (username, scheduleId) {
+    return scheduleServices.findScheduleById(scheduleId).then((schedule) => {
+      if (schedule) {
+        return this.addScheduleToUser(username, schedule);
+      } else {
+        return null;
+      }
+    });
+  },
+
+  addScheduleToUser: function (username, schedule) {
     return new Promise((resolve, reject) => {
       this.findUserByUsername(username)
         .then((user) => {
@@ -59,7 +70,6 @@ const usersServices = {
           );
         })
         .then((result) => {
-          console.log(result);
           resolve(result);
         })
         .catch((error) => {
@@ -90,10 +100,8 @@ const usersServices = {
               return userModel.updateOne(
                 { _id: id },
                 {
-                  $set: {
-                    password: hashedPassword,
-                    salt: newSalt,
-                  },
+                  password: hashedPassword,
+                  salt: newSalt,
                 },
               );
             })
@@ -127,6 +135,31 @@ const usersServices = {
           reject(error);
         });
     });
+  },
+
+  changePass: function (username, password, newpass) {
+    return this.authenticateUser(username, password)
+      .then((user) => {
+        if (!user) {
+          return null;
+        }
+        return this.updatePass(username, newpass)
+          .then((updateRes) => {
+            if (updateRes) {
+              return updateRes;
+            } else {
+              return null;
+            }
+          })
+          .catch((error) => {
+            console.error("Error changing password:", error);
+            throw error;
+          });
+      })
+      .catch((error) => {
+        console.error("Error changing password:", error);
+        throw error;
+      });
   },
 };
 
