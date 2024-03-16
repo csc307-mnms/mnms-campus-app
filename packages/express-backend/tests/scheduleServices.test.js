@@ -51,5 +51,6 @@ describe("scheduleServices", () => {
     await scheduleServices.findScheduleById(id);
 
     expect(schedule.findById).toHaveBeenCalledWith(id);
+    schedule.findById = findById;
   });
 });
