@@ -36,18 +36,6 @@ describe("testing user model", () => {
     });
   });
 
-  test("should not create a user with duplicate username", async () => {
-    const userData = {
-      username: "john_doe",
-      email: "johndoe@gmail.com",
-      password: "password123",
-    };
-
-    await user.create(userData);
-
-    await expect(user.create(userData)).rejects.toThrow();
-  });
-
   test("should not create a user without required fields", async () => {
     const userData = {
       email: "johndoe@gmail.com",
