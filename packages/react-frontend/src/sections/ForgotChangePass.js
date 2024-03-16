@@ -4,7 +4,7 @@ import Button from "../components/Button.js";
 import backgroundImage from "../resources/calpolycampus.jpg";
 import BackHeader from "../components/BackHeader.js";
 import TextBox from "../components/TextBox.js";
-import { SectionID, BackendURI } from "../data/data.js";
+import { BackendURI } from "../data/data.js";
 import { useLocation } from "react-router-dom";
 
 function ForgotChangePass() {
@@ -61,8 +61,8 @@ function ForgotChangePass() {
     })
       .then((res) => {
         if (res.ok) {
-          window.location.href = `${SectionID.Login}`;
-          return res.json();
+          window.location.href = "/";
+          return res;
         } else if (res.status === 401) {
           throw new Error("Invalid password");
         } else {

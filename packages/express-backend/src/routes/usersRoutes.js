@@ -77,9 +77,9 @@ router.post("/pass", async (req, res) => {
   const { username, password, newpass } = req.body;
   userServices.authenticateUser(username, password).then((user) => {
     if (user) {
-      userServices.updatePass(username, newpass).then((res) => {
-        if (res) {
-          res.status(200).send("Password updated");
+      userServices.updatePass(username, newpass).then((updateRes) => {
+        if (updateRes) {
+          res.status(200).send();
         } else {
           res.status(401).send("Invalid username or current password");
         }
@@ -95,7 +95,7 @@ router.post("/overwritePass", async (req, res) => {
   userServices
     .updatePass(username, newpass)
     .then(() => {
-      res.status(200).send("Password updated successfully");
+      res.status(200).send();
     })
     .catch((error) => {
       console.error("Error updating password:", error);

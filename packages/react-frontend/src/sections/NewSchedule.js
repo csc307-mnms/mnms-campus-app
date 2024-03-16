@@ -4,6 +4,7 @@ import LogoutHeader from "../components/LogoutHeader.js";
 import NavBar from "../components/NavBar.js";
 import TextBox from "../components/TextBox.js";
 import FileUpload from "../components/FileUpload.js";
+import { BackendURI } from "../data/data.js";
 
 function NewSchedule() {
   const [name, setScheduleName] = useState();
@@ -25,7 +26,7 @@ function NewSchedule() {
     formData.append("icsFile", file);
     console.log(name);
     console.log(file);
-    fetch("http://localhost:8000/schedules/upload", {
+    fetch(`${BackendURI}/schedules/upload`, {
       method: "POST",
       body: formData,
     })

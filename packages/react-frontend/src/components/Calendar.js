@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { DayPilot } from "@daypilot/daypilot-lite-react";
 import { DayPilotCalendar } from "@daypilot/daypilot-lite-react";
-import { BackendURI } from "../data/data";
+import { BackendURI, SectionID } from "../data/data";
 
 const Calendar = ({ selectedScheduleId }) => {
   const [config] = useState({
@@ -15,7 +15,7 @@ const Calendar = ({ selectedScheduleId }) => {
       await fetch(`${BackendURI}/buildings/id/${args.e.data.resource}`)
         .then((res) => res.json())
         .then((data) => {
-          window.location.href = `/map?building=${data.name}`;
+          window.location.href = `${SectionID.Map}?building=${data.name}`;
         });
     },
   });
@@ -60,10 +60,10 @@ const Calendar = ({ selectedScheduleId }) => {
             let date = firstDayOfWeek.addDays(dayOfWeek);
 
             const originalStart = new DayPilot.Date(
-              `${course.startTime.replace("Z", "")}+08:00`,
+              `${course.startTime.replace("Z", "")}`,
             );
             const originalEnd = new DayPilot.Date(
-              `${course.endTime.replace("Z", "")}+08:00`,
+              `${course.endTime.replace("Z", "")}`,
             );
 
             const start = date

@@ -29,7 +29,6 @@ function Login({ setToken }) {
         }
       })
       .then((data) => {
-        console.log(data);
         setToken(data.token);
       })
       .catch((error) => {

@@ -69,9 +69,7 @@ function Schedules() {
         </div>
       </div>
 
-      {selectedSchedule && (
-        <Calendar selectedScheduleId={selectedSchedule} className="" />
-      )}
+      {selectedSchedule && <Calendar selectedScheduleId={selectedSchedule} />}
 
       <div className="fixed bottom-0 left-0 right-0">
         <NavBar activePage="schedule" />
