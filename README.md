@@ -16,7 +16,7 @@ Michelle Chi
 
 
 ### UI Prototype
-[Our Figma UI Prototype!](https://www.figma.com/file/FOLkjA34MuM4At3CVWLIgr/Campus-Map-Prototype?type=design&node-id=81%3A50&mode=design&t=oKbUU3ubrdHgVDHl-1) 
+[Our Figma UI Prototype](https://www.figma.com/file/FOLkjA34MuM4At3CVWLIgr/Campus-Map-Prototype?type=design&node-id=81%3A50&mode=design&t=oKbUU3ubrdHgVDHl-1) 
 (Last Updated 2/29/24)
 
 
